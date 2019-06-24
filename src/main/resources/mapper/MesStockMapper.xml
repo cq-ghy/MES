@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStockMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStock" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stock_storageid" property="stockStorageid" jdbcType="INTEGER" />
+    <result column="stock_productid" property="stockProductid" jdbcType="INTEGER" />
+    <result column="stock_orderid" property="stockOrderid" jdbcType="INTEGER" />
+    <result column="stock_ordername" property="stockOrdername" jdbcType="VARCHAR" />
+    <result column="stock_imgid" property="stockImgid" jdbcType="VARCHAR" />
+    <result column="stock_productname" property="stockProductname" jdbcType="VARCHAR" />
+    <result column="stock_productsource" property="stockProductsource" jdbcType="CHAR" />
+    <result column="stock_storagestatus" property="stockStoragestatus" jdbcType="INTEGER" />
+    <result column="stock_checkremark" property="stockCheckremark" jdbcType="VARCHAR" />
+    <result column="stock_remark" property="stockRemark" jdbcType="VARCHAR" />
+    <result column="stock_parentid" property="stockParentid" jdbcType="INTEGER" />
+    <result column="stock_outobj" property="stockOutobj" jdbcType="VARCHAR" />
+    <result column="stock_intime" property="stockIntime" jdbcType="TIMESTAMP" />
+    <result column="stock_outtime" property="stockOuttime" jdbcType="TIMESTAMP" />
+    <result column="stock_status" property="stockStatus" jdbcType="INTEGER" />
+    <result column="stock_operator" property="stockOperator" jdbcType="VARCHAR" />
+    <result column="stock_operate_time" property="stockOperateTime" jdbcType="TIMESTAMP" />
+    <result column="stock_operate_ip" property="stockOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, stock_storageid, stock_productid, stock_orderid, stock_ordername, stock_imgid, 
+    stock_productname, stock_productsource, stock_storagestatus, stock_checkremark, stock_remark, 
+    stock_parentid, stock_outobj, stock_intime, stock_outtime, stock_status, stock_operator, 
+    stock_operate_time, stock_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_stock
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_stock
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesStock" >
+    insert into mes_stock (id, stock_storageid, stock_productid, 
+      stock_orderid, stock_ordername, stock_imgid, 
+      stock_productname, stock_productsource, stock_storagestatus, 
+      stock_checkremark, stock_remark, stock_parentid, 
+      stock_outobj, stock_intime, stock_outtime, 
+      stock_status, stock_operator, stock_operate_time, 
+      stock_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{stockStorageid,jdbcType=INTEGER}, #{stockProductid,jdbcType=INTEGER}, 
+      #{stockOrderid,jdbcType=INTEGER}, #{stockOrdername,jdbcType=VARCHAR}, #{stockImgid,jdbcType=VARCHAR}, 
+      #{stockProductname,jdbcType=VARCHAR}, #{stockProductsource,jdbcType=CHAR}, #{stockStoragestatus,jdbcType=INTEGER}, 
+      #{stockCheckremark,jdbcType=VARCHAR}, #{stockRemark,jdbcType=VARCHAR}, #{stockParentid,jdbcType=INTEGER}, 
+      #{stockOutobj,jdbcType=VARCHAR}, #{stockIntime,jdbcType=TIMESTAMP}, #{stockOuttime,jdbcType=TIMESTAMP}, 
+      #{stockStatus,jdbcType=INTEGER}, #{stockOperator,jdbcType=VARCHAR}, #{stockOperateTime,jdbcType=TIMESTAMP}, 
+      #{stockOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesStock" >
+    insert into mes_stock
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stockStorageid != null" >
+        stock_storageid,
+      </if>
+      <if test="stockProductid != null" >
+        stock_productid,
+      </if>
+      <if test="stockOrderid != null" >
+        stock_orderid,
+      </if>
+      <if test="stockOrdername != null" >
+        stock_ordername,
+      </if>
+      <if test="stockImgid != null" >
+        stock_imgid,
+      </if>
+      <if test="stockProductname != null" >
+        stock_productname,
+      </if>
+      <if test="stockProductsource != null" >
+        stock_productsource,
+      </if>
+      <if test="stockStoragestatus != null" >
+        stock_storagestatus,
+      </if>
+      <if test="stockCheckremark != null" >
+        stock_checkremark,
+      </if>
+      <if test="stockRemark != null" >
+        stock_remark,
+      </if>
+      <if test="stockParentid != null" >
+        stock_parentid,
+      </if>
+      <if test="stockOutobj != null" >
+        stock_outobj,
+      </if>
+      <if test="stockIntime != null" >
+        stock_intime,
+      </if>
+      <if test="stockOuttime != null" >
+        stock_outtime,
+      </if>
+      <if test="stockStatus != null" >
+        stock_status,
+      </if>
+      <if test="stockOperator != null" >
+        stock_operator,
+      </if>
+      <if test="stockOperateTime != null" >
+        stock_operate_time,
+      </if>
+      <if test="stockOperateIp != null" >
+        stock_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stockStorageid != null" >
+        #{stockStorageid,jdbcType=INTEGER},
+      </if>
+      <if test="stockProductid != null" >
+        #{stockProductid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOrderid != null" >
+        #{stockOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOrdername != null" >
+        #{stockOrdername,jdbcType=VARCHAR},
+      </if>
+      <if test="stockImgid != null" >
+        #{stockImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockProductname != null" >
+        #{stockProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="stockProductsource != null" >
+        #{stockProductsource,jdbcType=CHAR},
+      </if>
+      <if test="stockStoragestatus != null" >
+        #{stockStoragestatus,jdbcType=INTEGER},
+      </if>
+      <if test="stockCheckremark != null" >
+        #{stockCheckremark,jdbcType=VARCHAR},
+      </if>
+      <if test="stockRemark != null" >
+        #{stockRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stockParentid != null" >
+        #{stockParentid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOutobj != null" >
+        #{stockOutobj,jdbcType=VARCHAR},
+      </if>
+      <if test="stockIntime != null" >
+        #{stockIntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockOuttime != null" >
+        #{stockOuttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockStatus != null" >
+        #{stockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stockOperator != null" >
+        #{stockOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="stockOperateTime != null" >
+        #{stockOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockOperateIp != null" >
+        #{stockOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesStock" >
+    update mes_stock
+    <set >
+      <if test="stockStorageid != null" >
+        stock_storageid = #{stockStorageid,jdbcType=INTEGER},
+      </if>
+      <if test="stockProductid != null" >
+        stock_productid = #{stockProductid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOrderid != null" >
+        stock_orderid = #{stockOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOrdername != null" >
+        stock_ordername = #{stockOrdername,jdbcType=VARCHAR},
+      </if>
+      <if test="stockImgid != null" >
+        stock_imgid = #{stockImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="stockProductname != null" >
+        stock_productname = #{stockProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="stockProductsource != null" >
+        stock_productsource = #{stockProductsource,jdbcType=CHAR},
+      </if>
+      <if test="stockStoragestatus != null" >
+        stock_storagestatus = #{stockStoragestatus,jdbcType=INTEGER},
+      </if>
+      <if test="stockCheckremark != null" >
+        stock_checkremark = #{stockCheckremark,jdbcType=VARCHAR},
+      </if>
+      <if test="stockRemark != null" >
+        stock_remark = #{stockRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stockParentid != null" >
+        stock_parentid = #{stockParentid,jdbcType=INTEGER},
+      </if>
+      <if test="stockOutobj != null" >
+        stock_outobj = #{stockOutobj,jdbcType=VARCHAR},
+      </if>
+      <if test="stockIntime != null" >
+        stock_intime = #{stockIntime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockOuttime != null" >
+        stock_outtime = #{stockOuttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockStatus != null" >
+        stock_status = #{stockStatus,jdbcType=INTEGER},
+      </if>
+      <if test="stockOperator != null" >
+        stock_operator = #{stockOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="stockOperateTime != null" >
+        stock_operate_time = #{stockOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stockOperateIp != null" >
+        stock_operate_ip = #{stockOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesStock" >
+    update mes_stock
+    set stock_storageid = #{stockStorageid,jdbcType=INTEGER},
+      stock_productid = #{stockProductid,jdbcType=INTEGER},
+      stock_orderid = #{stockOrderid,jdbcType=INTEGER},
+      stock_ordername = #{stockOrdername,jdbcType=VARCHAR},
+      stock_imgid = #{stockImgid,jdbcType=VARCHAR},
+      stock_productname = #{stockProductname,jdbcType=VARCHAR},
+      stock_productsource = #{stockProductsource,jdbcType=CHAR},
+      stock_storagestatus = #{stockStoragestatus,jdbcType=INTEGER},
+      stock_checkremark = #{stockCheckremark,jdbcType=VARCHAR},
+      stock_remark = #{stockRemark,jdbcType=VARCHAR},
+      stock_parentid = #{stockParentid,jdbcType=INTEGER},
+      stock_outobj = #{stockOutobj,jdbcType=VARCHAR},
+      stock_intime = #{stockIntime,jdbcType=TIMESTAMP},
+      stock_outtime = #{stockOuttime,jdbcType=TIMESTAMP},
+      stock_status = #{stockStatus,jdbcType=INTEGER},
+      stock_operator = #{stockOperator,jdbcType=VARCHAR},
+      stock_operate_time = #{stockOperateTime,jdbcType=TIMESTAMP},
+      stock_operate_ip = #{stockOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesPlanCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plan_orderid" property="planOrderid" jdbcType="VARCHAR" />
+    <result column="plan_productname" property="planProductname" jdbcType="VARCHAR" />
+    <result column="plan_clientname" property="planClientname" jdbcType="VARCHAR" />
+    <result column="plan_contractid" property="planContractid" jdbcType="VARCHAR" />
+    <result column="plan_imgid" property="planImgid" jdbcType="VARCHAR" />
+    <result column="plan_materialname" property="planMaterialname" jdbcType="VARCHAR" />
+    <result column="plan_materialdesc" property="planMaterialdesc" jdbcType="VARCHAR" />
+    <result column="plan_currentstatus" property="planCurrentstatus" jdbcType="VARCHAR" />
+    <result column="plan_currentremark" property="planCurrentremark" jdbcType="VARCHAR" />
+    <result column="plan_salestatus" property="planSalestatus" jdbcType="VARCHAR" />
+    <result column="plan_materialsource" property="planMaterialsource" jdbcType="VARCHAR" />
+    <result column="plan_hurrystatus" property="planHurrystatus" jdbcType="INTEGER" />
+    <result column="plan_status" property="planStatus" jdbcType="INTEGER" />
+    <result column="plan_cometime" property="planCometime" jdbcType="TIMESTAMP" />
+    <result column="plan_committime" property="planCommittime" jdbcType="TIMESTAMP" />
+    <result column="plan_workstarttime" property="planWorkstarttime" jdbcType="TIMESTAMP" />
+    <result column="plan_workendtime" property="planWorkendtime" jdbcType="TIMESTAMP" />
+    <result column="plan_inventorystatus" property="planInventorystatus" jdbcType="INTEGER" />
+    <result column="plan_remark" property="planRemark" jdbcType="VARCHAR" />
+    <result column="plan_operator" property="planOperator" jdbcType="VARCHAR" />
+    <result column="plan_operate_time" property="planOperateTime" jdbcType="TIMESTAMP" />
+    <result column="plan_operate_ip" property="planOperateIp" jdbcType="VARCHAR" />
+  	
+  	
+  	
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, plan_orderid, plan_productname, plan_clientname, plan_contractid, plan_imgid, 
+    plan_materialname, plan_materialdesc, plan_currentstatus, plan_currentremark, plan_salestatus, 
+    plan_materialsource, plan_hurrystatus, plan_status, plan_cometime, plan_committime, 
+    plan_workstarttime, plan_workendtime, plan_inventorystatus, plan_remark, plan_operator, 
+    plan_operate_time, plan_operate_ip
+  </sql>
+  
+  	<select id="getPlanCount" resultType="Long">
+		SELECT
+		COUNT( 1 )
+		FROM
+		mes_plan
+	</select>
+  
+  	<select id="countBySearchDto" parameterType="map"
+		resultType="int">
+		SELECT count(1)
+		FROM mes_plan
+		<include refid="queryConditions" />
+	</select>
+    <!-- 以下就是分页版块 -->
+	<select id="getPageListBySearchDto" parameterType="map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM mes_plan
+		<include refid="queryConditions" />
+		ORDER BY plan_operate_time DESC,id DESC
+		limit #{page.offset}, #{page.pageSize}
+	</select>
+  <!-- where：帮助你增加一个where拼接，解下来将第一个出现的and去掉 -->
+	<sql id="queryConditions">
+		<where>
+			<if test="dto.search_status != null">
+				AND plan_status = #{dto.search_status}
+			</if>
+			<if test="dto.search_msource!=null">
+				AND plan_materialsource = #{dto.search_msource}
+			</if>
+			<if test="dto.keyword != null and dto.keyword != ''">
+				AND ((plan_orderid like #{dto.keyword}) or (plan_productname like #{dto.keyword}) or
+				(plan_clientname like #{dto.keyword}) or (plan_contractid like
+				#{dto.keyword})or (plan_materialname like #{dto.keyword})or (plan_materialsource like
+				#{dto.keyword}) or (plan_imgid like #{dto.keyword}))
+			</if>
+			<if test="dto.fromTime != null and dto.toTime != null">
+				AND plan_cometime BETWEEN #{dto.fromTime} AND #{dto.toTime}
+			</if>
+		</where>
+	</sql>
+	
+	<update id="batchStartWithIds" parameterType="list">
+		  update mes_plan set plan_status=1
+		  where 
+		  id in
+		  <foreach item="item" index="index" collection="list"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>
+	</update>
+</mapper>

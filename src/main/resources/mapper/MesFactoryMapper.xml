@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesFactoryMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesFactory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="factory_storageid" property="factoryStorageid" jdbcType="INTEGER" />
+    <result column="factory_productid" property="factoryProductid" jdbcType="INTEGER" />
+    <result column="factory_orderid" property="factoryOrderid" jdbcType="INTEGER" />
+    <result column="factory_preid" property="factoryPreid" jdbcType="INTEGER" />
+    <result column="factory_prostatus" property="factoryProstatus" jdbcType="VARCHAR" />
+    <result column="factory_remark" property="factoryRemark" jdbcType="VARCHAR" />
+    <result column="factory_status" property="factoryStatus" jdbcType="INTEGER" />
+    <result column="factory_operator" property="factoryOperator" jdbcType="VARCHAR" />
+    <result column="factory_operate_time" property="factoryOperateTime" jdbcType="TIMESTAMP" />
+    <result column="factory_operate_ip" property="factoryOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, factory_storageid, factory_productid, factory_orderid, factory_preid, factory_prostatus, 
+    factory_remark, factory_status, factory_operator, factory_operate_time, factory_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_factory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_factory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesFactory" >
+    insert into mes_factory (id, factory_storageid, factory_productid, 
+      factory_orderid, factory_preid, factory_prostatus, 
+      factory_remark, factory_status, factory_operator, 
+      factory_operate_time, factory_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{factoryStorageid,jdbcType=INTEGER}, #{factoryProductid,jdbcType=INTEGER}, 
+      #{factoryOrderid,jdbcType=INTEGER}, #{factoryPreid,jdbcType=INTEGER}, #{factoryProstatus,jdbcType=VARCHAR}, 
+      #{factoryRemark,jdbcType=VARCHAR}, #{factoryStatus,jdbcType=INTEGER}, #{factoryOperator,jdbcType=VARCHAR}, 
+      #{factoryOperateTime,jdbcType=TIMESTAMP}, #{factoryOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesFactory" >
+    insert into mes_factory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="factoryStorageid != null" >
+        factory_storageid,
+      </if>
+      <if test="factoryProductid != null" >
+        factory_productid,
+      </if>
+      <if test="factoryOrderid != null" >
+        factory_orderid,
+      </if>
+      <if test="factoryPreid != null" >
+        factory_preid,
+      </if>
+      <if test="factoryProstatus != null" >
+        factory_prostatus,
+      </if>
+      <if test="factoryRemark != null" >
+        factory_remark,
+      </if>
+      <if test="factoryStatus != null" >
+        factory_status,
+      </if>
+      <if test="factoryOperator != null" >
+        factory_operator,
+      </if>
+      <if test="factoryOperateTime != null" >
+        factory_operate_time,
+      </if>
+      <if test="factoryOperateIp != null" >
+        factory_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="factoryStorageid != null" >
+        #{factoryStorageid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryProductid != null" >
+        #{factoryProductid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryOrderid != null" >
+        #{factoryOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryPreid != null" >
+        #{factoryPreid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryProstatus != null" >
+        #{factoryProstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryRemark != null" >
+        #{factoryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryStatus != null" >
+        #{factoryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="factoryOperator != null" >
+        #{factoryOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryOperateTime != null" >
+        #{factoryOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryOperateIp != null" >
+        #{factoryOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesFactory" >
+    update mes_factory
+    <set >
+      <if test="factoryStorageid != null" >
+        factory_storageid = #{factoryStorageid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryProductid != null" >
+        factory_productid = #{factoryProductid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryOrderid != null" >
+        factory_orderid = #{factoryOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryPreid != null" >
+        factory_preid = #{factoryPreid,jdbcType=INTEGER},
+      </if>
+      <if test="factoryProstatus != null" >
+        factory_prostatus = #{factoryProstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryRemark != null" >
+        factory_remark = #{factoryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryStatus != null" >
+        factory_status = #{factoryStatus,jdbcType=INTEGER},
+      </if>
+      <if test="factoryOperator != null" >
+        factory_operator = #{factoryOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryOperateTime != null" >
+        factory_operate_time = #{factoryOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="factoryOperateIp != null" >
+        factory_operate_ip = #{factoryOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesFactory" >
+    update mes_factory
+    set factory_storageid = #{factoryStorageid,jdbcType=INTEGER},
+      factory_productid = #{factoryProductid,jdbcType=INTEGER},
+      factory_orderid = #{factoryOrderid,jdbcType=INTEGER},
+      factory_preid = #{factoryPreid,jdbcType=INTEGER},
+      factory_prostatus = #{factoryProstatus,jdbcType=VARCHAR},
+      factory_remark = #{factoryRemark,jdbcType=VARCHAR},
+      factory_status = #{factoryStatus,jdbcType=INTEGER},
+      factory_operator = #{factoryOperator,jdbcType=VARCHAR},
+      factory_operate_time = #{factoryOperateTime,jdbcType=TIMESTAMP},
+      factory_operate_ip = #{factoryOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

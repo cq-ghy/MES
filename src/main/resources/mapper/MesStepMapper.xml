@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStepMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStep" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="step_name" property="stepName" jdbcType="VARCHAR" />
+    <result column="step_remark" property="stepRemark" jdbcType="VARCHAR" />
+    <result column="step_operator" property="stepOperator" jdbcType="VARCHAR" />
+    <result column="step_operate_time" property="stepOperateTime" jdbcType="TIMESTAMP" />
+    <result column="step_operate_ip" property="stepOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, step_name, step_remark, step_operator, step_operate_time, step_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_step
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_step
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesStep" >
+    insert into mes_step (id, step_name, step_remark, 
+      step_operator, step_operate_time, step_operate_ip
+      )
+    values (#{id,jdbcType=INTEGER}, #{stepName,jdbcType=VARCHAR}, #{stepRemark,jdbcType=VARCHAR}, 
+      #{stepOperator,jdbcType=VARCHAR}, #{stepOperateTime,jdbcType=TIMESTAMP}, #{stepOperateIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesStep" >
+    insert into mes_step
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="stepName != null" >
+        step_name,
+      </if>
+      <if test="stepRemark != null" >
+        step_remark,
+      </if>
+      <if test="stepOperator != null" >
+        step_operator,
+      </if>
+      <if test="stepOperateTime != null" >
+        step_operate_time,
+      </if>
+      <if test="stepOperateIp != null" >
+        step_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="stepName != null" >
+        #{stepName,jdbcType=VARCHAR},
+      </if>
+      <if test="stepRemark != null" >
+        #{stepRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stepOperator != null" >
+        #{stepOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="stepOperateTime != null" >
+        #{stepOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stepOperateIp != null" >
+        #{stepOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesStep" >
+    update mes_step
+    <set >
+      <if test="stepName != null" >
+        step_name = #{stepName,jdbcType=VARCHAR},
+      </if>
+      <if test="stepRemark != null" >
+        step_remark = #{stepRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="stepOperator != null" >
+        step_operator = #{stepOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="stepOperateTime != null" >
+        step_operate_time = #{stepOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="stepOperateIp != null" >
+        step_operate_ip = #{stepOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesStep" >
+    update mes_step
+    set step_name = #{stepName,jdbcType=VARCHAR},
+      step_remark = #{stepRemark,jdbcType=VARCHAR},
+      step_operator = #{stepOperator,jdbcType=VARCHAR},
+      step_operate_time = #{stepOperateTime,jdbcType=TIMESTAMP},
+      step_operate_ip = #{stepOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

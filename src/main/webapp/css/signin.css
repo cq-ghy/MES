@@ -1,0 +1,30 @@
+@charset "utf-8";
+/* CSS Document */
+*{font-size:9pt;border:0;margin:0;padding:0;}
+body{font-family:'微软雅黑'; margin:0 auto;min-width:980px;}
+ul{display:block;margin:0;padding:0;list-style:none;}
+li{display:block;margin:0;padding:0;list-style: none;}
+a,a:focus{text-decoration:none;color:#000;outline:none;blr:expression(this.onFocus=this.blur());}
+a:hover{color:#00a4ac;text-decoration:underline;}
+
+/*body*/
+body{background-color:#1c77ac; background-image:url(/assets/images/login/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;}
+/*cloud*/
+#mainBody {width:100%;height:100%;position:absolute;z-index:-1;}
+.cloud {position:absolute;top:0px;left:0px;width:100%;height:100%;background:url(/assets/images/login/cloud.png) no-repeat;z-index:1;opacity:0.5;}
+#cloud2 {z-index:2;}
+
+/*login*/
+.logintop{height:47px; position:absolute; top:0; background:url(/assets/images/login/loginbg1.png) repeat-x;z-index:100; width:100%;}
+.logintop span{color:#fff; line-height:47px; background:url(/assets/images/login/loginsj.png) no-repeat 21px 18px; text-indent:44px; color:#afc5d2; float:left;}
+
+.loginbody{background:url(/assets/images/login/loginbg3.png) no-repeat center center; width:100%; height:585px; overflow:hidden; position:absolute; top:47px;}
+.systemlogo{background:url(/assets/images/login/loginlogo.png) no-repeat center;width:100%; height:71px; margin-top:75px;}
+.loginbox{width:459px; height:266px; background:url(/assets/images/login/logininfo.png) no-repeat center ; margin-top:60px;left:350px;background-size:contain;}
+.loginbox ul{margin-top:88px; margin-left:128px;}
+.loginbox ul li{margin-bottom:25px;width:60%;}
+.has-success .form-control{border-color:#78c4f0;padding-left:36px;  }
+.loginbtn{width:111px;height:35px; background:url(/assets/images/login/buttonbg.png) repeat-x; font-size:14px; font-weight:bold; color:#fff;cursor:pointer; line-height:35px;}
+.form-control-feedback{left:0;}
+/*输入框中图标的颜色设置；*/
+.has-success .form-control-feedback{color:#78c4f0;}

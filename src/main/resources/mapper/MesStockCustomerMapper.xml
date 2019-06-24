@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStockCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStock" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stock_storageid" property="stockStorageid" jdbcType="INTEGER" />
+    <result column="stock_productid" property="stockProductid" jdbcType="INTEGER" />
+    <result column="stock_orderid" property="stockOrderid" jdbcType="INTEGER" />
+    <result column="stock_ordername" property="stockOrdername" jdbcType="VARCHAR" />
+    <result column="stock_imgid" property="stockImgid" jdbcType="VARCHAR" />
+    <result column="stock_productname" property="stockProductname" jdbcType="VARCHAR" />
+    <result column="stock_productsource" property="stockProductsource" jdbcType="CHAR" />
+    <result column="stock_storagestatus" property="stockStoragestatus" jdbcType="INTEGER" />
+    <result column="stock_checkremark" property="stockCheckremark" jdbcType="VARCHAR" />
+    <result column="stock_remark" property="stockRemark" jdbcType="VARCHAR" />
+    <result column="stock_parentid" property="stockParentid" jdbcType="INTEGER" />
+    <result column="stock_outobj" property="stockOutobj" jdbcType="VARCHAR" />
+    <result column="stock_intime" property="stockIntime" jdbcType="TIMESTAMP" />
+    <result column="stock_outtime" property="stockOuttime" jdbcType="TIMESTAMP" />
+    <result column="stock_status" property="stockStatus" jdbcType="INTEGER" />
+    <result column="stock_operator" property="stockOperator" jdbcType="VARCHAR" />
+    <result column="stock_operate_time" property="stockOperateTime" jdbcType="TIMESTAMP" />
+    <result column="stock_operate_ip" property="stockOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <!-- dto resultmap -->
+  <resultMap id="BaseDtoResultMap" type="com.haoyu.dto.StockDto" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="stock_storageid" property="stockStorageid" jdbcType="INTEGER" />
+    <result column="stock_productid" property="stockProductid" jdbcType="INTEGER" />
+    <result column="stock_orderid" property="stockOrderid" jdbcType="INTEGER" />
+    <result column="stock_ordername" property="stockOrdername" jdbcType="VARCHAR" />
+    <result column="stock_imgid" property="stockImgid" jdbcType="VARCHAR" />
+    <result column="stock_productname" property="stockProductname" jdbcType="VARCHAR" />
+    <result column="stock_productsource" property="stockProductsource" jdbcType="CHAR" />
+    <result column="stock_storagestatus" property="stockStoragestatus" jdbcType="INTEGER" />
+    <result column="stock_checkremark" property="stockCheckremark" jdbcType="VARCHAR" />
+    <result column="stock_remark" property="stockRemark" jdbcType="VARCHAR" />
+    <result column="stock_parentid" property="stockParentid" jdbcType="INTEGER" />
+    <result column="stock_outobj" property="stockOutobj" jdbcType="VARCHAR" />
+    <result column="stock_intime" property="stockIntime" jdbcType="TIMESTAMP" />
+    <result column="stock_outtime" property="stockOuttime" jdbcType="TIMESTAMP" />
+    <result column="stock_status" property="stockStatus" jdbcType="INTEGER" />
+    <result column="stock_operator" property="stockOperator" jdbcType="VARCHAR" />
+    <result column="stock_operate_time" property="stockOperateTime" jdbcType="TIMESTAMP" />
+    <result column="stock_operate_ip" property="stockOperateIp" jdbcType="VARCHAR" />
+    <association property="storage" javaType="com.haoyu.model.MesStorage">
+    	<id column="sid" property="id" jdbcType="INTEGER" />
+	    <result column="storage_name" property="storageName" jdbcType="VARCHAR" />
+	    <result column="storage_remark" property="storageRemark" jdbcType="VARCHAR" />
+	    <result column="storage_operator" property="storageOperator" jdbcType="VARCHAR" />
+	    <result column="storage_operate_time" property="storageOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="storage_operate_ip" property="storageOperateIp" jdbcType="VARCHAR" />
+    </association>
+    <association property="product" javaType="com.haoyu.model.MesProduct">
+	    <id column="pid" property="id" jdbcType="INTEGER" />
+	    <result column="p_id" property="pId" jdbcType="INTEGER" />
+	    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+	    <result column="product_orderid" property="productOrderid" jdbcType="INTEGER" />
+	    <result column="product_planid" property="productPlanid" jdbcType="INTEGER" />
+	    <result column="product_targetweight" property="productTargetweight" jdbcType="REAL" />
+	    <result column="product_realweight" property="productRealweight" jdbcType="REAL" />
+	    <result column="product_leftweight" property="productLeftweight" jdbcType="REAL" />
+	    <result column="product_bakweight" property="productBakweight" jdbcType="REAL" />
+	    <result column="product_irontype" property="productIrontype" jdbcType="VARCHAR" />
+	    <result column="product_irontypeweight" property="productIrontypeweight" jdbcType="REAL" />
+	    <result column="product_materialname" property="productMaterialname" jdbcType="VARCHAR" />
+	    <result column="product_imgid" property="productImgid" jdbcType="VARCHAR" />
+	    <result column="product_materialsource" property="productMaterialsource" jdbcType="VARCHAR" />
+	    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+	    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+	    <result column="product_operator" property="productOperator" jdbcType="VARCHAR" />
+	    <result column="product_operate_time" property="productOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="product_operate_ip" property="productOperateIp" jdbcType="VARCHAR" />
+    </association>
+    <association property="order" javaType="com.haoyu.model.MesOrder">
+	    <id column="oid" property="id" jdbcType="INTEGER" />
+	    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+	    <result column="order_clientname" property="orderClientname" jdbcType="VARCHAR" />
+	    <result column="order_productname" property="orderProductname" jdbcType="VARCHAR" />
+	    <result column="order_contractid" property="orderContractid" jdbcType="VARCHAR" />
+	    <result column="order_imgid" property="orderImgid" jdbcType="VARCHAR" />
+	    <result column="order_materialname" property="orderMaterialname" jdbcType="VARCHAR" />
+	    <result column="order_cometime" property="orderCometime" jdbcType="TIMESTAMP" />
+	    <result column="order_committime" property="orderCommittime" jdbcType="TIMESTAMP" />
+	    <result column="order_inventorystatus" property="orderInventorystatus" jdbcType="INTEGER" />
+	    <result column="order_salestatus" property="orderSalestatus" jdbcType="CHAR" />
+	    <result column="order_materialsource" property="orderMaterialsource" jdbcType="CHAR" />
+	    <result column="order_hurrystatus" property="orderHurrystatus" jdbcType="INTEGER" />
+	    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+	    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+	    <result column="order_operator" property="orderOperator" jdbcType="VARCHAR" />
+	    <result column="order_operate_time" property="orderOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="order_operate_ip" property="orderOperateIp" jdbcType="VARCHAR" />
+    </association>
+  </resultMap>
+  
+  
+  <sql id="Base_Column_List" >
+    mes_stock.id, stock_storageid, stock_productid, stock_orderid, stock_ordername, stock_imgid, 
+    stock_productname, stock_productsource, stock_storagestatus, stock_checkremark, stock_remark, 
+    stock_parentid, stock_outobj, stock_intime, stock_outtime, stock_status, stock_operator, 
+    stock_operate_time, stock_operate_ip
+  </sql>
+  
+  <sql id="Base_Order_Column_List" >
+    mes_order.id oid, order_id, order_clientname, order_productname, order_contractid, order_imgid, 
+    order_materialname, order_cometime, order_committime, order_inventorystatus, order_salestatus, 
+    order_materialsource, order_hurrystatus, order_status, order_remark, order_operator, 
+    order_operate_time, order_operate_ip
+  </sql>
+  
+   <sql id="Base_Product_Column_List" >
+    mes_product.id pid, p_id, product_id, product_orderid, product_planid, product_targetweight, product_realweight, 
+    product_leftweight, product_bakweight, product_irontype, product_irontypeweight, 
+    product_materialname, product_imgid, product_materialsource, product_status, product_remark, 
+    product_operator, product_operate_time, product_operate_ip
+  </sql>
+  
+  <sql id="Base_Storage_Column_List" >
+    mes_storage.id sid, storage_name, storage_remark, storage_operator, storage_operate_time, storage_operate_ip
+  </sql>
+  
+  <select id="countBySearchDto" parameterType="map" resultType="int">
+		select
+  		count(mes_stock.id)
+  		from mes_stock
+  		left join  mes_order
+  		on mes_stock.stock_orderid = mes_order.id
+  		left join mes_product
+  		on mes_stock.stock_productid=mes_product.id
+  		left join mes_storage
+  		on mes_stock.stock_storageid=mes_storage.id
+  		<include refid="queryConditions"></include>
+  </select>
+  
+  <select id="getPageListBySearchDto" parameterType="map" resultMap="BaseDtoResultMap">
+  		select
+  		<include refid="Base_Column_List"></include>,
+  		<include refid="Base_Order_Column_List"></include>,
+  		<include refid="Base_Product_Column_List"></include>,
+  		<include refid="Base_Storage_Column_List"></include>
+  		from mes_stock
+  		left join  mes_order
+  		on mes_stock.stock_orderid = mes_order.id
+  		left join mes_product
+  		on mes_stock.stock_productid=mes_product.id
+  		left join mes_storage
+  		on mes_stock.stock_storageid=mes_storage.id
+  		<include refid="queryConditions"></include>
+  		order by mes_stock.id desc
+  		limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryConditions">
+  		<!-- TODO -->
+  		<where>
+  			<if test="dto.storagename !=null">
+  				and mes_stock.stock_storageid=#{dto.storagename} 
+  			</if>
+  			<if test="dto.search_status !=null">
+  				and mes_stock.stock_status=#{dto.search_status} 
+  			</if>
+  			<if test="dto.stock_status !=null and dto.stock_status>0">
+  				and mes_stock.stock_storagestatus=#{dto.stock_status} 
+  			</if>
+  		</where>
+  </sql>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</mapper>

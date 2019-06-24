@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesProductCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="product_orderid" property="productOrderid" jdbcType="INTEGER" />
+    <result column="product_planid" property="productPlanid" jdbcType="INTEGER" />
+    <result column="product_targetweight" property="productTargetweight" jdbcType="REAL" />
+    <result column="product_realweight" property="productRealweight" jdbcType="REAL" />
+    <result column="product_leftweight" property="productLeftweight" jdbcType="REAL" />
+    <result column="product_bakweight" property="productBakweight" jdbcType="REAL" />
+    <result column="product_irontype" property="productIrontype" jdbcType="VARCHAR" />
+    <result column="product_irontypeweight" property="productIrontypeweight" jdbcType="REAL" />
+    <result column="product_materialname" property="productMaterialname" jdbcType="VARCHAR" />
+    <result column="product_imgid" property="productImgid" jdbcType="VARCHAR" />
+    <result column="product_materialsource" property="productMaterialsource" jdbcType="VARCHAR" />
+    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+    <result column="product_operator" property="productOperator" jdbcType="VARCHAR" />
+    <result column="product_operate_time" property="productOperateTime" jdbcType="TIMESTAMP" />
+    <result column="product_operate_ip" property="productOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseDtoResultMap" type="com.haoyu.dto.ProductDto" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="product_orderid" property="productOrderid" jdbcType="INTEGER" />
+    <result column="product_planid" property="productPlanid" jdbcType="INTEGER" />
+    <result column="product_targetweight" property="productTargetweight" jdbcType="REAL" />
+    <result column="product_realweight" property="productRealweight" jdbcType="REAL" />
+    <result column="product_leftweight" property="productLeftweight" jdbcType="REAL" />
+    <result column="product_bakweight" property="productBakweight" jdbcType="REAL" />
+    <result column="product_irontype" property="productIrontype" jdbcType="VARCHAR" />
+    <result column="product_irontypeweight" property="productIrontypeweight" jdbcType="REAL" />
+    <result column="product_materialname" property="productMaterialname" jdbcType="VARCHAR" />
+    <result column="product_imgid" property="productImgid" jdbcType="VARCHAR" />
+    <result column="product_materialsource" property="productMaterialsource" jdbcType="VARCHAR" />
+    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+    <result column="product_operator" property="productOperator" jdbcType="VARCHAR" />
+    <result column="product_operate_time" property="productOperateTime" jdbcType="TIMESTAMP" />
+    <result column="product_operate_ip" property="productOperateIp" jdbcType="VARCHAR" />
+ 	<association property="order" javaType="com.haoyu.model.MesOrder">
+	    <id column="orderid" property="id" jdbcType="INTEGER" />
+	    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+	    <result column="order_clientname" property="orderClientname" jdbcType="VARCHAR" />
+	    <result column="order_productname" property="orderProductname" jdbcType="VARCHAR" />
+	    <result column="order_contractid" property="orderContractid" jdbcType="VARCHAR" />
+	    <result column="order_imgid" property="orderImgid" jdbcType="VARCHAR" />
+	    <result column="order_materialname" property="orderMaterialname" jdbcType="VARCHAR" />
+	    <result column="order_cometime" property="orderCometime" jdbcType="TIMESTAMP" />
+	    <result column="order_committime" property="orderCommittime" jdbcType="TIMESTAMP" />
+	    <result column="order_inventorystatus" property="orderInventorystatus" jdbcType="INTEGER" />
+	    <result column="order_salestatus" property="orderSalestatus" jdbcType="CHAR" />
+	    <result column="order_materialsource" property="orderMaterialsource" jdbcType="CHAR" />
+	    <result column="order_hurrystatus" property="orderHurrystatus" jdbcType="INTEGER" />
+	    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+	    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+	    <result column="order_operator" property="orderOperator" jdbcType="VARCHAR" />
+	    <result column="order_operate_time" property="orderOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="order_operate_ip" property="orderOperateIp" jdbcType="VARCHAR" />
+ 	</association>
+ 	<association property="plan" javaType="com.haoyu.model.MesPlan">
+		<id column="planid" property="id" jdbcType="INTEGER" />
+	    <result column="plan_orderid" property="planOrderid" jdbcType="VARCHAR" />
+	    <result column="plan_productname" property="planProductname" jdbcType="VARCHAR" />
+	    <result column="plan_clientname" property="planClientname" jdbcType="VARCHAR" />
+	    <result column="plan_contractid" property="planContractid" jdbcType="VARCHAR" />
+	    <result column="plan_imgid" property="planImgid" jdbcType="VARCHAR" />
+	    <result column="plan_materialname" property="planMaterialname" jdbcType="VARCHAR" />
+	    <result column="plan_materialdesc" property="planMaterialdesc" jdbcType="VARCHAR" />
+	    <result column="plan_currentstatus" property="planCurrentstatus" jdbcType="VARCHAR" />
+	    <result column="plan_currentremark" property="planCurrentremark" jdbcType="VARCHAR" />
+	    <result column="plan_salestatus" property="planSalestatus" jdbcType="VARCHAR" />
+	    <result column="plan_materialsource" property="planMaterialsource" jdbcType="VARCHAR" />
+	    <result column="plan_hurrystatus" property="planHurrystatus" jdbcType="INTEGER" />
+	    <result column="plan_status" property="planStatus" jdbcType="INTEGER" />
+	    <result column="plan_cometime" property="planCometime" jdbcType="TIMESTAMP" />
+	    <result column="plan_committime" property="planCommittime" jdbcType="TIMESTAMP" />
+	    <result column="plan_workstarttime" property="planWorkstarttime" jdbcType="TIMESTAMP" />
+	    <result column="plan_workendtime" property="planWorkendtime" jdbcType="TIMESTAMP" />
+	    <result column="plan_inventorystatus" property="planInventorystatus" jdbcType="INTEGER" />
+	    <result column="plan_remark" property="planRemark" jdbcType="VARCHAR" />
+	    <result column="plan_operator" property="planOperator" jdbcType="VARCHAR" />
+	    <result column="plan_operate_time" property="planOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="plan_operate_ip" property="planOperateIp" jdbcType="VARCHAR" />	
+ 	</association>
+ 	<association property="parent" javaType="com.haoyu.model.MesProduct">
+ 		<id column="parent_id" property="id" jdbcType="INTEGER" />
+ 		<result column="parent_productid" property="productId" jdbcType="VARCHAR" />
+ 	</association>
+  </resultMap>
+  
+  <!-- product -->
+  <sql id="Product_Base_Column_List" >
+    mes_product.id,mes_product.p_id,mes_product.product_id,mes_product.product_orderid,mes_product.product_planid,mes_product.product_targetweight,mes_product.product_realweight, 
+    mes_product.product_leftweight,mes_product.product_bakweight,mes_product.product_irontype,mes_product.product_irontypeweight, 
+    mes_product.product_materialname,mes_product.product_imgid,mes_product.product_materialsource,mes_product.product_status,mes_product.product_remark, 
+    mes_product.product_operator,mes_product.product_operate_time,mes_product.product_operate_ip
+  </sql>
+  
+  <!-- plan -->
+  <sql id="Order_Base_Column_List" >
+    mes_order.id orderid, plan_orderid, plan_productname, plan_clientname, plan_contractid, plan_imgid, 
+    plan_materialname, plan_materialdesc, plan_currentstatus, plan_currentremark, plan_salestatus, 
+    plan_materialsource, plan_hurrystatus, plan_status, plan_cometime, plan_committime, 
+    plan_workstarttime, plan_workendtime, plan_inventorystatus, plan_remark, plan_operator, 
+    plan_operate_time, plan_operate_ip
+  </sql>
+  
+  <!-- order -->
+  <sql id="Plan_Base_Column_List" >
+    mes_plan.id planid, order_id, order_clientname, order_productname, order_contractid, order_imgid, 
+    order_materialname, order_cometime, order_committime, order_inventorystatus, order_salestatus, 
+    order_materialsource, order_hurrystatus, order_status, order_remark, order_operator, 
+    order_operate_time, order_operate_ip
+  </sql>
+  
+  <select id="countBySearchDto" parameterType="map" resultType="int">
+    select count(mes_product.id)
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductConditions"></include>
+  </select>
+  
+  <!-- 分页-左连接 -->
+  <select id="getPageListBySearchDto" parameterType="map" resultMap="BaseDtoResultMap">
+  	select <include refid="Product_Base_Column_List"></include>,
+  	<include refid="Order_Base_Column_List"></include>,
+  	<include refid="Plan_Base_Column_List"></include>,
+  	parent.id parent_id,parent.product_id parent_productid
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductConditions"></include>
+  	order by mes_order.order_committime desc
+  	limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryProductConditions">
+  	<where>
+  		<if test="dto.search_status !=null ">
+	  		and mes_product.product_status = #{dto.search_status}
+  		</if>
+  		<if test="dto.keyword != null">
+  			and (mes_product.product_irontype like #{dto.keyword} or mes_product.product_materialname like #{dto.keyword}
+  			or mes_product.product_imgid like #{dto.keyword})
+  		</if>
+  		<choose>
+  			<when test="dto.search_source !=null">
+  				 and mes_product.product_materialsource = #{dto.search_source}
+  			</when>
+  			<otherwise>
+  				 and mes_product.product_materialsource != '钢锭'
+  			</otherwise>
+  		</choose>
+  		<!-- <if test="dto.search_source !=null">
+  			and mes_product.product_materialsource = #{dto.search_source}
+  		</if> -->
+  	</where>
+  </sql>
+  <!-- 
+  	对绑定的钢材进行分页
+   -->
+   <select id="countBySearchBindListDto" parameterType="map" resultType="int">
+    select count(mes_product.id)
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductBindListConditions"></include>
+  </select>
+    <!-- 分页-左连接 -->
+  <select id="getPageListBySearchBindListDto" parameterType="map" resultMap="BaseDtoResultMap">
+  	select <include refid="Product_Base_Column_List"></include>,
+  	<include refid="Order_Base_Column_List"></include>,
+  	<include refid="Plan_Base_Column_List"></include>,
+  	parent.id parent_id,parent.product_id parent_productid
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductBindListConditions"></include>
+  	order by mes_product.product_bakweight desc,mes_product.product_leftweight desc
+  	limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryProductBindListConditions">
+  	<where>
+	  	mes_product.product_status = 1
+	  	and
+	  	mes_product.product_leftweight >0
+  		<if test="dto.keyword != null">
+  			and (mes_product.product_irontype like #{dto.keyword} or mes_product.product_materialname like #{dto.keyword}
+  			or mes_product.product_imgid like #{dto.keyword})
+  		</if>
+  		<if test="dto.search_source !=null">
+  			and mes_product.product_materialsource = #{dto.search_source}
+  		</if>
+  	</where>
+  </sql>
+  
+    <!-- 
+  	钢材绑定的子材料分页
+   -->
+    <select id="countBySearchChildBindListDto" parameterType="map" resultType="int">
+    select count(mes_product.id)
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductChildBindListConditions"></include>
+  </select>
+    <!-- 分页-左连接 -->
+  <select id="getPageListBySearchChildBindListDto" parameterType="map" resultMap="BaseDtoResultMap">
+  	select <include refid="Product_Base_Column_List"></include>,
+  	<include refid="Order_Base_Column_List"></include>,
+  	<include refid="Plan_Base_Column_List"></include>,
+  	parent.id parent_id,parent.product_id parent_productid
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductChildBindListConditions"></include>
+  	order by mes_product.product_targetweight desc
+  	limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryProductChildBindListConditions">
+  	<where>
+  		mes_product.product_status = 0
+  		and
+  		mes_product.product_targetweight >0
+  		and
+  		mes_product.p_id is null
+  		and
+  		(mes_product.product_realweight is null or mes_product.product_realweight=0)
+  		and
+  		(mes_product.product_leftweight is null or mes_product.product_leftweight=0)
+  		<if test="dto.search_source !=null">
+  			and mes_product.product_materialsource = #{dto.search_source}
+  		</if>
+  	</where>
+  </sql>
+   <!-- 
+  	钢材已绑定的子材料分页
+   -->
+  <select id="countBySearchParentBindListDto" parameterType="map" resultType="int">
+    select count(mes_product.id)
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductParentBindListConditions"></include>
+  </select>
+    <!-- 分页-左连接 -->
+  <select id="getPageListBySearchParentBindListDto" parameterType="map" resultMap="BaseDtoResultMap">
+  	select <include refid="Product_Base_Column_List"></include>,
+  	<include refid="Order_Base_Column_List"></include>,
+  	<include refid="Plan_Base_Column_List"></include>,
+  	parent.id parent_id,parent.product_id parent_productid
+  	from mes_product left join mes_order
+  	on mes_product.product_orderid=mes_order.id
+  	left join mes_plan
+  	on mes_product.product_planid=mes_plan.id
+  	left join mes_product parent
+  	on mes_product.p_id=parent.id
+  	<include refid="queryProductParentBindListConditions"></include>
+  	order by mes_product.product_targetweight desc
+  	limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryProductParentBindListConditions">
+  	<where>
+  		mes_product.product_status = 1
+  		and mes_product.p_id = #{dto.pid}
+  		<if test="dto.search_source !=null">
+  			and mes_product.product_materialsource = #{dto.search_source}
+  		</if>
+  	</where>
+  </sql>
+   
+</mapper>

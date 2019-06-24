@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_clientname" property="orderClientname" jdbcType="VARCHAR" />
+    <result column="order_productname" property="orderProductname" jdbcType="VARCHAR" />
+    <result column="order_contractid" property="orderContractid" jdbcType="VARCHAR" />
+    <result column="order_imgid" property="orderImgid" jdbcType="VARCHAR" />
+    <result column="order_materialname" property="orderMaterialname" jdbcType="VARCHAR" />
+    <result column="order_cometime" property="orderCometime" jdbcType="TIMESTAMP" />
+    <result column="order_committime" property="orderCommittime" jdbcType="TIMESTAMP" />
+    <result column="order_inventorystatus" property="orderInventorystatus" jdbcType="INTEGER" />
+    <result column="order_salestatus" property="orderSalestatus" jdbcType="CHAR" />
+    <result column="order_materialsource" property="orderMaterialsource" jdbcType="CHAR" />
+    <result column="order_hurrystatus" property="orderHurrystatus" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+    <result column="order_operator" property="orderOperator" jdbcType="VARCHAR" />
+    <result column="order_operate_time" property="orderOperateTime" jdbcType="TIMESTAMP" />
+    <result column="order_operate_ip" property="orderOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_clientname, order_productname, order_contractid, order_imgid, 
+    order_materialname, order_cometime, order_committime, order_inventorystatus, order_salestatus, 
+    order_materialsource, order_hurrystatus, order_status, order_remark, order_operator, 
+    order_operate_time, order_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesOrder" >
+    insert into mes_order (id, order_id, order_clientname, 
+      order_productname, order_contractid, order_imgid, 
+      order_materialname, order_cometime, order_committime, 
+      order_inventorystatus, order_salestatus, order_materialsource, 
+      order_hurrystatus, order_status, order_remark, 
+      order_operator, order_operate_time, order_operate_ip
+      )
+    values (#{id,jdbcType=INTEGER}, #{orderId,jdbcType=VARCHAR}, #{orderClientname,jdbcType=VARCHAR}, 
+      #{orderProductname,jdbcType=VARCHAR}, #{orderContractid,jdbcType=VARCHAR}, #{orderImgid,jdbcType=VARCHAR}, 
+      #{orderMaterialname,jdbcType=VARCHAR}, #{orderCometime,jdbcType=TIMESTAMP}, #{orderCommittime,jdbcType=TIMESTAMP}, 
+      #{orderInventorystatus,jdbcType=INTEGER}, #{orderSalestatus,jdbcType=CHAR}, #{orderMaterialsource,jdbcType=CHAR}, 
+      #{orderHurrystatus,jdbcType=INTEGER}, #{orderStatus,jdbcType=INTEGER}, #{orderRemark,jdbcType=VARCHAR}, 
+      #{orderOperator,jdbcType=VARCHAR}, #{orderOperateTime,jdbcType=TIMESTAMP}, #{orderOperateIp,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesOrder" >
+    insert into mes_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="orderClientname != null" >
+        order_clientname,
+      </if>
+      <if test="orderProductname != null" >
+        order_productname,
+      </if>
+      <if test="orderContractid != null" >
+        order_contractid,
+      </if>
+      <if test="orderImgid != null" >
+        order_imgid,
+      </if>
+      <if test="orderMaterialname != null" >
+        order_materialname,
+      </if>
+      <if test="orderCometime != null" >
+        order_cometime,
+      </if>
+      <if test="orderCommittime != null" >
+        order_committime,
+      </if>
+      <if test="orderInventorystatus != null" >
+        order_inventorystatus,
+      </if>
+      <if test="orderSalestatus != null" >
+        order_salestatus,
+      </if>
+      <if test="orderMaterialsource != null" >
+        order_materialsource,
+      </if>
+      <if test="orderHurrystatus != null" >
+        order_hurrystatus,
+      </if>
+      <if test="orderStatus != null" >
+        order_status,
+      </if>
+      <if test="orderRemark != null" >
+        order_remark,
+      </if>
+      <if test="orderOperator != null" >
+        order_operator,
+      </if>
+      <if test="orderOperateTime != null" >
+        order_operate_time,
+      </if>
+      <if test="orderOperateIp != null" >
+        order_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderClientname != null" >
+        #{orderClientname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderProductname != null" >
+        #{orderProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderContractid != null" >
+        #{orderContractid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderImgid != null" >
+        #{orderImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialname != null" >
+        #{orderMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCometime != null" >
+        #{orderCometime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCommittime != null" >
+        #{orderCommittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderInventorystatus != null" >
+        #{orderInventorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderSalestatus != null" >
+        #{orderSalestatus,jdbcType=CHAR},
+      </if>
+      <if test="orderMaterialsource != null" >
+        #{orderMaterialsource,jdbcType=CHAR},
+      </if>
+      <if test="orderHurrystatus != null" >
+        #{orderHurrystatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemark != null" >
+        #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOperator != null" >
+        #{orderOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOperateTime != null" >
+        #{orderOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderOperateIp != null" >
+        #{orderOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesOrder" >
+    update mes_order
+    <set >
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderClientname != null" >
+        order_clientname = #{orderClientname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderProductname != null" >
+        order_productname = #{orderProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderContractid != null" >
+        order_contractid = #{orderContractid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderImgid != null" >
+        order_imgid = #{orderImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderMaterialname != null" >
+        order_materialname = #{orderMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="orderCometime != null" >
+        order_cometime = #{orderCometime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderCommittime != null" >
+        order_committime = #{orderCommittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderInventorystatus != null" >
+        order_inventorystatus = #{orderInventorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderSalestatus != null" >
+        order_salestatus = #{orderSalestatus,jdbcType=CHAR},
+      </if>
+      <if test="orderMaterialsource != null" >
+        order_materialsource = #{orderMaterialsource,jdbcType=CHAR},
+      </if>
+      <if test="orderHurrystatus != null" >
+        order_hurrystatus = #{orderHurrystatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderStatus != null" >
+        order_status = #{orderStatus,jdbcType=INTEGER},
+      </if>
+      <if test="orderRemark != null" >
+        order_remark = #{orderRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOperator != null" >
+        order_operator = #{orderOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="orderOperateTime != null" >
+        order_operate_time = #{orderOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderOperateIp != null" >
+        order_operate_ip = #{orderOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesOrder" >
+    update mes_order
+    set order_id = #{orderId,jdbcType=VARCHAR},
+      order_clientname = #{orderClientname,jdbcType=VARCHAR},
+      order_productname = #{orderProductname,jdbcType=VARCHAR},
+      order_contractid = #{orderContractid,jdbcType=VARCHAR},
+      order_imgid = #{orderImgid,jdbcType=VARCHAR},
+      order_materialname = #{orderMaterialname,jdbcType=VARCHAR},
+      order_cometime = #{orderCometime,jdbcType=TIMESTAMP},
+      order_committime = #{orderCommittime,jdbcType=TIMESTAMP},
+      order_inventorystatus = #{orderInventorystatus,jdbcType=INTEGER},
+      order_salestatus = #{orderSalestatus,jdbcType=CHAR},
+      order_materialsource = #{orderMaterialsource,jdbcType=CHAR},
+      order_hurrystatus = #{orderHurrystatus,jdbcType=INTEGER},
+      order_status = #{orderStatus,jdbcType=INTEGER},
+      order_remark = #{orderRemark,jdbcType=VARCHAR},
+      order_operator = #{orderOperator,jdbcType=VARCHAR},
+      order_operate_time = #{orderOperateTime,jdbcType=TIMESTAMP},
+      order_operate_ip = #{orderOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

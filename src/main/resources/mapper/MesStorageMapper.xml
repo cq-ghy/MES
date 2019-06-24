@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStorageMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStorage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="storage_name" property="storageName" jdbcType="VARCHAR" />
+    <result column="storage_remark" property="storageRemark" jdbcType="VARCHAR" />
+    <result column="storage_operator" property="storageOperator" jdbcType="VARCHAR" />
+    <result column="storage_operate_time" property="storageOperateTime" jdbcType="TIMESTAMP" />
+    <result column="storage_operate_ip" property="storageOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, storage_name, storage_remark, storage_operator, storage_operate_time, storage_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_storage
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_storage
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesStorage" >
+    insert into mes_storage (id, storage_name, storage_remark, 
+      storage_operator, storage_operate_time, 
+      storage_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{storageName,jdbcType=VARCHAR}, #{storageRemark,jdbcType=VARCHAR}, 
+      #{storageOperator,jdbcType=VARCHAR}, #{storageOperateTime,jdbcType=TIMESTAMP}, 
+      #{storageOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesStorage" >
+    insert into mes_storage
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="storageName != null" >
+        storage_name,
+      </if>
+      <if test="storageRemark != null" >
+        storage_remark,
+      </if>
+      <if test="storageOperator != null" >
+        storage_operator,
+      </if>
+      <if test="storageOperateTime != null" >
+        storage_operate_time,
+      </if>
+      <if test="storageOperateIp != null" >
+        storage_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="storageName != null" >
+        #{storageName,jdbcType=VARCHAR},
+      </if>
+      <if test="storageRemark != null" >
+        #{storageRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="storageOperator != null" >
+        #{storageOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="storageOperateTime != null" >
+        #{storageOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageOperateIp != null" >
+        #{storageOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesStorage" >
+    update mes_storage
+    <set >
+      <if test="storageName != null" >
+        storage_name = #{storageName,jdbcType=VARCHAR},
+      </if>
+      <if test="storageRemark != null" >
+        storage_remark = #{storageRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="storageOperator != null" >
+        storage_operator = #{storageOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="storageOperateTime != null" >
+        storage_operate_time = #{storageOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="storageOperateIp != null" >
+        storage_operate_ip = #{storageOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesStorage" >
+    update mes_storage
+    set storage_name = #{storageName,jdbcType=VARCHAR},
+      storage_remark = #{storageRemark,jdbcType=VARCHAR},
+      storage_operator = #{storageOperator,jdbcType=VARCHAR},
+      storage_operate_time = #{storageOperateTime,jdbcType=TIMESTAMP},
+      storage_operate_ip = #{storageOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

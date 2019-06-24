@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesFactoryCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesFactory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="factory_storageid" property="factoryStorageid" jdbcType="INTEGER" />
+    <result column="factory_productid" property="factoryProductid" jdbcType="INTEGER" />
+    <result column="factory_orderid" property="factoryOrderid" jdbcType="INTEGER" />
+    <result column="factory_preid" property="factoryPreid" jdbcType="INTEGER" />
+    <result column="factory_prostatus" property="factoryProstatus" jdbcType="VARCHAR" />
+    <result column="factory_remark" property="factoryRemark" jdbcType="VARCHAR" />
+    <result column="factory_status" property="factoryStatus" jdbcType="INTEGER" />
+    <result column="factory_operator" property="factoryOperator" jdbcType="VARCHAR" />
+    <result column="factory_operate_time" property="factoryOperateTime" jdbcType="TIMESTAMP" />
+    <result column="factory_operate_ip" property="factoryOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap id="BaseDtoResultMap" type="com.haoyu.dto.FactoryDto" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="factory_storageid" property="factoryStorageid" jdbcType="INTEGER" />
+    <result column="factory_productid" property="factoryProductid" jdbcType="INTEGER" />
+    <result column="factory_orderid" property="factoryOrderid" jdbcType="INTEGER" />
+    <result column="factory_preid" property="factoryPreid" jdbcType="INTEGER" />
+    <result column="factory_prostatus" property="factoryProstatus" jdbcType="VARCHAR" />
+    <result column="factory_remark" property="factoryRemark" jdbcType="VARCHAR" />
+    <result column="factory_status" property="factoryStatus" jdbcType="INTEGER" />
+    <result column="factory_operator" property="factoryOperator" jdbcType="VARCHAR" />
+    <result column="factory_operate_time" property="factoryOperateTime" jdbcType="TIMESTAMP" />
+    <result column="factory_operate_ip" property="factoryOperateIp" jdbcType="VARCHAR" />
+  	<association property="storage" javaType="com.haoyu.model.MesStorage">
+    	<id column="sid" property="id" jdbcType="INTEGER" />
+	    <result column="storage_name" property="storageName" jdbcType="VARCHAR" />
+	    <result column="storage_remark" property="storageRemark" jdbcType="VARCHAR" />
+	    <result column="storage_operator" property="storageOperator" jdbcType="VARCHAR" />
+	    <result column="storage_operate_time" property="storageOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="storage_operate_ip" property="storageOperateIp" jdbcType="VARCHAR" />
+    </association>
+    <association property="product" javaType="com.haoyu.model.MesProduct">
+	    <id column="pid" property="id" jdbcType="INTEGER" />
+	    <result column="p_id" property="pId" jdbcType="INTEGER" />
+	    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+	    <result column="product_orderid" property="productOrderid" jdbcType="INTEGER" />
+	    <result column="product_planid" property="productPlanid" jdbcType="INTEGER" />
+	    <result column="product_targetweight" property="productTargetweight" jdbcType="REAL" />
+	    <result column="product_realweight" property="productRealweight" jdbcType="REAL" />
+	    <result column="product_leftweight" property="productLeftweight" jdbcType="REAL" />
+	    <result column="product_bakweight" property="productBakweight" jdbcType="REAL" />
+	    <result column="product_irontype" property="productIrontype" jdbcType="VARCHAR" />
+	    <result column="product_irontypeweight" property="productIrontypeweight" jdbcType="REAL" />
+	    <result column="product_materialname" property="productMaterialname" jdbcType="VARCHAR" />
+	    <result column="product_imgid" property="productImgid" jdbcType="VARCHAR" />
+	    <result column="product_materialsource" property="productMaterialsource" jdbcType="VARCHAR" />
+	    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+	    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+	    <result column="product_operator" property="productOperator" jdbcType="VARCHAR" />
+	    <result column="product_operate_time" property="productOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="product_operate_ip" property="productOperateIp" jdbcType="VARCHAR" />
+    </association>
+    <association property="order" javaType="com.haoyu.model.MesOrder">
+	    <id column="oid" property="id" jdbcType="INTEGER" />
+	    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+	    <result column="order_clientname" property="orderClientname" jdbcType="VARCHAR" />
+	    <result column="order_productname" property="orderProductname" jdbcType="VARCHAR" />
+	    <result column="order_contractid" property="orderContractid" jdbcType="VARCHAR" />
+	    <result column="order_imgid" property="orderImgid" jdbcType="VARCHAR" />
+	    <result column="order_materialname" property="orderMaterialname" jdbcType="VARCHAR" />
+	    <result column="order_cometime" property="orderCometime" jdbcType="TIMESTAMP" />
+	    <result column="order_committime" property="orderCommittime" jdbcType="TIMESTAMP" />
+	    <result column="order_inventorystatus" property="orderInventorystatus" jdbcType="INTEGER" />
+	    <result column="order_salestatus" property="orderSalestatus" jdbcType="CHAR" />
+	    <result column="order_materialsource" property="orderMaterialsource" jdbcType="CHAR" />
+	    <result column="order_hurrystatus" property="orderHurrystatus" jdbcType="INTEGER" />
+	    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+	    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+	    <result column="order_operator" property="orderOperator" jdbcType="VARCHAR" />
+	    <result column="order_operate_time" property="orderOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="order_operate_ip" property="orderOperateIp" jdbcType="VARCHAR" />
+    </association>
+    <association property="step" javaType="com.haoyu.model.MesStep">
+    	<id column="stepid" property="id" jdbcType="INTEGER" />
+	    <result column="step_name" property="stepName" jdbcType="VARCHAR" />
+	    <result column="step_remark" property="stepRemark" jdbcType="VARCHAR" />
+	    <result column="step_operator" property="stepOperator" jdbcType="VARCHAR" />
+	    <result column="step_operate_time" property="stepOperateTime" jdbcType="TIMESTAMP" />
+	    <result column="step_operate_ip" property="stepOperateIp" jdbcType="VARCHAR" />
+	    </association>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    mes_factory.id, factory_storageid, factory_productid, factory_orderid, factory_preid, factory_prostatus, 
+    factory_remark, factory_status, factory_operator, factory_operate_time, factory_operate_ip
+  </sql>
+  
+  <sql id="Base_Order_Column_List" >
+    mes_order.id oid, order_id, order_clientname, order_productname, order_contractid, order_imgid, 
+    order_materialname, order_cometime, order_committime, order_inventorystatus, order_salestatus, 
+    order_materialsource, order_hurrystatus, order_status, order_remark, order_operator, 
+    order_operate_time, order_operate_ip
+  </sql>
+  
+   <sql id="Base_Product_Column_List" >
+    mes_product.id pid, p_id, product_id, product_orderid, product_planid, product_targetweight, product_realweight, 
+    product_leftweight, product_bakweight, product_irontype, product_irontypeweight, 
+    product_materialname, product_imgid, product_materialsource, product_status, product_remark, 
+    product_operator, product_operate_time, product_operate_ip
+  </sql>
+  
+  <sql id="Base_Storage_Column_List" >
+    mes_storage.id sid, storage_name, storage_remark, storage_operator, storage_operate_time, storage_operate_ip
+  </sql>
+  
+  <sql id="Base_Step_Column_List" >
+    mes_step.id stepid, step_name, step_remark, step_operator, step_operate_time, step_operate_ip
+  </sql>
+  
+  <select id="countBySearchDto" parameterType="map" resultType="int">
+		select 
+  		count(mes_factory.id)
+  		from mes_factory
+  		left join  mes_order
+  		on mes_factory.factory_orderid = mes_order.id
+  		left join mes_product
+  		on mes_factory.factory_productid=mes_product.id
+  		left join mes_storage
+  		on mes_factory.factory_storageid=mes_storage.id
+  		left join mes_step
+  		on mes_factory.factory_preid = mes_step.id
+  		<include refid="queryConditions"></include>
+  </select>
+  
+  <select id="getPageListBySearchDto" parameterType="map" resultMap="BaseDtoResultMap">
+  		select 
+  		<include refid="Base_Column_List"></include>,
+  		<include refid="Base_Order_Column_List"></include>,
+  		<include refid="Base_Product_Column_List"></include>,
+  		<include refid="Base_Storage_Column_List"></include>,
+  		<include refid="Base_Step_Column_List"></include>
+  		from mes_factory
+  		left join  mes_order
+  		on mes_factory.factory_orderid = mes_order.id
+  		left join mes_product
+  		on mes_factory.factory_productid=mes_product.id
+  		left join mes_storage
+  		on mes_factory.factory_storageid=mes_storage.id
+  		left join mes_step
+  		on mes_factory.factory_preid = mes_step.id
+  		<include refid="queryConditions"></include>
+  		order by mes_factory.id desc
+  		limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryConditions">
+  		<!-- TODO keyword  time-->
+  		<where>
+  			<if test="dto.storageid !=null">
+  				and mes_factory.factory_storageid=#{dto.storageid} 
+  			</if>
+  			<if test="dto.search_prostatus!=null">
+  				and mes_factory.factory_prostatus=#{dto.search_prostatus} 
+  			</if>
+  		</where>
+  </sql>
+  
+  <!-- 查询factorydto -->
+  <select id="selectFactoryDtoById" parameterType="map" resultMap="BaseDtoResultMap">
+  	  	select 
+  		<include refid="Base_Column_List"></include>,
+  		<include refid="Base_Order_Column_List"></include>,
+  		<include refid="Base_Product_Column_List"></include>,
+  		<include refid="Base_Storage_Column_List"></include>,
+  		<include refid="Base_Step_Column_List"></include>
+  		from mes_factory
+  		left join  mes_order
+  		on mes_factory.factory_orderid = mes_order.id
+  		left join mes_product
+  		on mes_factory.factory_productid=mes_product.id
+  		left join mes_storage
+  		on mes_factory.factory_storageid=mes_storage.id
+  		left join mes_step
+  		on mes_factory.factory_preid = mes_step.id
+  		where mes_factory.id=#{id}
+  </select>
+  
+</mapper>

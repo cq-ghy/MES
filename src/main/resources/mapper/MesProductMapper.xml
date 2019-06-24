@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesProductMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesProduct" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="VARCHAR" />
+    <result column="product_orderid" property="productOrderid" jdbcType="INTEGER" />
+    <result column="product_planid" property="productPlanid" jdbcType="INTEGER" />
+    <result column="product_targetweight" property="productTargetweight" jdbcType="REAL" />
+    <result column="product_realweight" property="productRealweight" jdbcType="REAL" />
+    <result column="product_leftweight" property="productLeftweight" jdbcType="REAL" />
+    <result column="product_bakweight" property="productBakweight" jdbcType="REAL" />
+    <result column="product_irontype" property="productIrontype" jdbcType="VARCHAR" />
+    <result column="product_irontypeweight" property="productIrontypeweight" jdbcType="REAL" />
+    <result column="product_materialname" property="productMaterialname" jdbcType="VARCHAR" />
+    <result column="product_imgid" property="productImgid" jdbcType="VARCHAR" />
+    <result column="product_materialsource" property="productMaterialsource" jdbcType="VARCHAR" />
+    <result column="product_status" property="productStatus" jdbcType="INTEGER" />
+    <result column="product_remark" property="productRemark" jdbcType="VARCHAR" />
+    <result column="product_operator" property="productOperator" jdbcType="VARCHAR" />
+    <result column="product_operate_time" property="productOperateTime" jdbcType="TIMESTAMP" />
+    <result column="product_operate_ip" property="productOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, p_id, product_id, product_orderid, product_planid, product_targetweight, product_realweight, 
+    product_leftweight, product_bakweight, product_irontype, product_irontypeweight, 
+    product_materialname, product_imgid, product_materialsource, product_status, product_remark, 
+    product_operator, product_operate_time, product_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_product
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_product
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesProduct" >
+    insert into mes_product (id, p_id, product_id, 
+      product_orderid, product_planid, product_targetweight, 
+      product_realweight, product_leftweight, product_bakweight, 
+      product_irontype, product_irontypeweight, product_materialname, 
+      product_imgid, product_materialsource, product_status, 
+      product_remark, product_operator, product_operate_time, 
+      product_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{pId,jdbcType=INTEGER}, #{productId,jdbcType=VARCHAR}, 
+      #{productOrderid,jdbcType=INTEGER}, #{productPlanid,jdbcType=INTEGER}, #{productTargetweight,jdbcType=REAL}, 
+      #{productRealweight,jdbcType=REAL}, #{productLeftweight,jdbcType=REAL}, #{productBakweight,jdbcType=REAL}, 
+      #{productIrontype,jdbcType=VARCHAR}, #{productIrontypeweight,jdbcType=REAL}, #{productMaterialname,jdbcType=VARCHAR}, 
+      #{productImgid,jdbcType=VARCHAR}, #{productMaterialsource,jdbcType=VARCHAR}, #{productStatus,jdbcType=INTEGER}, 
+      #{productRemark,jdbcType=VARCHAR}, #{productOperator,jdbcType=VARCHAR}, #{productOperateTime,jdbcType=TIMESTAMP}, 
+      #{productOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesProduct" >
+    insert into mes_product
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="productOrderid != null" >
+        product_orderid,
+      </if>
+      <if test="productPlanid != null" >
+        product_planid,
+      </if>
+      <if test="productTargetweight != null" >
+        product_targetweight,
+      </if>
+      <if test="productRealweight != null" >
+        product_realweight,
+      </if>
+      <if test="productLeftweight != null" >
+        product_leftweight,
+      </if>
+      <if test="productBakweight != null" >
+        product_bakweight,
+      </if>
+      <if test="productIrontype != null" >
+        product_irontype,
+      </if>
+      <if test="productIrontypeweight != null" >
+        product_irontypeweight,
+      </if>
+      <if test="productMaterialname != null" >
+        product_materialname,
+      </if>
+      <if test="productImgid != null" >
+        product_imgid,
+      </if>
+      <if test="productMaterialsource != null" >
+        product_materialsource,
+      </if>
+      <if test="productStatus != null" >
+        product_status,
+      </if>
+      <if test="productRemark != null" >
+        product_remark,
+      </if>
+      <if test="productOperator != null" >
+        product_operator,
+      </if>
+      <if test="productOperateTime != null" >
+        product_operate_time,
+      </if>
+      <if test="productOperateIp != null" >
+        product_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderid != null" >
+        #{productOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="productPlanid != null" >
+        #{productPlanid,jdbcType=INTEGER},
+      </if>
+      <if test="productTargetweight != null" >
+        #{productTargetweight,jdbcType=REAL},
+      </if>
+      <if test="productRealweight != null" >
+        #{productRealweight,jdbcType=REAL},
+      </if>
+      <if test="productLeftweight != null" >
+        #{productLeftweight,jdbcType=REAL},
+      </if>
+      <if test="productBakweight != null" >
+        #{productBakweight,jdbcType=REAL},
+      </if>
+      <if test="productIrontype != null" >
+        #{productIrontype,jdbcType=VARCHAR},
+      </if>
+      <if test="productIrontypeweight != null" >
+        #{productIrontypeweight,jdbcType=REAL},
+      </if>
+      <if test="productMaterialname != null" >
+        #{productMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="productImgid != null" >
+        #{productImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="productMaterialsource != null" >
+        #{productMaterialsource,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        #{productStatus,jdbcType=INTEGER},
+      </if>
+      <if test="productRemark != null" >
+        #{productRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productOperator != null" >
+        #{productOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="productOperateTime != null" >
+        #{productOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productOperateIp != null" >
+        #{productOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesProduct" >
+    update mes_product
+    <set >
+      <if test="pId != null" >
+        p_id = #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=VARCHAR},
+      </if>
+      <if test="productOrderid != null" >
+        product_orderid = #{productOrderid,jdbcType=INTEGER},
+      </if>
+      <if test="productPlanid != null" >
+        product_planid = #{productPlanid,jdbcType=INTEGER},
+      </if>
+      <if test="productTargetweight != null" >
+        product_targetweight = #{productTargetweight,jdbcType=REAL},
+      </if>
+      <if test="productRealweight != null" >
+        product_realweight = #{productRealweight,jdbcType=REAL},
+      </if>
+      <if test="productLeftweight != null" >
+        product_leftweight = #{productLeftweight,jdbcType=REAL},
+      </if>
+      <if test="productBakweight != null" >
+        product_bakweight = #{productBakweight,jdbcType=REAL},
+      </if>
+      <if test="productIrontype != null" >
+        product_irontype = #{productIrontype,jdbcType=VARCHAR},
+      </if>
+      <if test="productIrontypeweight != null" >
+        product_irontypeweight = #{productIrontypeweight,jdbcType=REAL},
+      </if>
+      <if test="productMaterialname != null" >
+        product_materialname = #{productMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="productImgid != null" >
+        product_imgid = #{productImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="productMaterialsource != null" >
+        product_materialsource = #{productMaterialsource,jdbcType=VARCHAR},
+      </if>
+      <if test="productStatus != null" >
+        product_status = #{productStatus,jdbcType=INTEGER},
+      </if>
+      <if test="productRemark != null" >
+        product_remark = #{productRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="productOperator != null" >
+        product_operator = #{productOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="productOperateTime != null" >
+        product_operate_time = #{productOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productOperateIp != null" >
+        product_operate_ip = #{productOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesProduct" >
+    update mes_product
+    set p_id = #{pId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=VARCHAR},
+      product_orderid = #{productOrderid,jdbcType=INTEGER},
+      product_planid = #{productPlanid,jdbcType=INTEGER},
+      product_targetweight = #{productTargetweight,jdbcType=REAL},
+      product_realweight = #{productRealweight,jdbcType=REAL},
+      product_leftweight = #{productLeftweight,jdbcType=REAL},
+      product_bakweight = #{productBakweight,jdbcType=REAL},
+      product_irontype = #{productIrontype,jdbcType=VARCHAR},
+      product_irontypeweight = #{productIrontypeweight,jdbcType=REAL},
+      product_materialname = #{productMaterialname,jdbcType=VARCHAR},
+      product_imgid = #{productImgid,jdbcType=VARCHAR},
+      product_materialsource = #{productMaterialsource,jdbcType=VARCHAR},
+      product_status = #{productStatus,jdbcType=INTEGER},
+      product_remark = #{productRemark,jdbcType=VARCHAR},
+      product_operator = #{productOperator,jdbcType=VARCHAR},
+      product_operate_time = #{productOperateTime,jdbcType=TIMESTAMP},
+      product_operate_ip = #{productOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

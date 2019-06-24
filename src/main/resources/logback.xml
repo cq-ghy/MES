@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds">
+	<!-- STDOUT  standout 标准化输出 -->
+	<!-- ch.qos.logback.core.ConsoleAppender 打印到控制台 -->
+	<!-- web项目中一般指定输入日志到catlina.out的文件 -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+        <!-- -5五个空格    n换行符-->
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--
+            根据时间压缩文件日志
+    <appender name="mes" class="ch.qos.logback.core.rolling.RollingFileAppender">-->
+        <!--<file>${catalina.home}/logs/mes.log</file>-->
+        <!--<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">-->
+            <!--<FileNamePattern>${catalina.home}/logs/mes.%d{yyyy-MM-dd}.log.gz</FileNamePattern>-->
+        <!--</rollingPolicy>-->
+        <!--<layout class="ch.qos.logback.classic.PatternLayout">-->
+            <!--<pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger - %msg%n</pattern>-->
+        <!--</layout>-->
+    <!--</appender>-->
+    <!---->
+    <!--<logger name="xxx" level="INFO">-->
+        <!--<appender-ref ref="mes"/>-->
+    <!--</logger>-->
+	
+	<!-- 级别为info以及以上级别的日志 -->
+    <!-- TRACE < DEBUG < INFO < WARN < ERROR -->
+    <root level="INFO">
+        <appender-ref ref="STDOUT" />
+    </root>
+
+</configuration>

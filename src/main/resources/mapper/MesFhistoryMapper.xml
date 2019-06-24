@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesFhistoryMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesFhistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fhistory_factoryid" property="fhistoryFactoryid" jdbcType="INTEGER" />
+    <result column="fhistory_step" property="fhistoryStep" jdbcType="VARCHAR" />
+    <result column="fhistory_starttime" property="fhistoryStarttime" jdbcType="TIMESTAMP" />
+    <result column="fhistory_endtime" property="fhistoryEndtime" jdbcType="TIMESTAMP" />
+    <result column="fhistory_remark" property="fhistoryRemark" jdbcType="VARCHAR" />
+    <result column="fhistory_operator" property="fhistoryOperator" jdbcType="VARCHAR" />
+    <result column="fhistory_operate_time" property="fhistoryOperateTime" jdbcType="TIMESTAMP" />
+    <result column="fhistory_operate_ip" property="fhistoryOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fhistory_factoryid, fhistory_step, fhistory_starttime, fhistory_endtime, fhistory_remark, 
+    fhistory_operator, fhistory_operate_time, fhistory_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_fhistory
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_fhistory
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesFhistory" >
+    insert into mes_fhistory (id, fhistory_factoryid, fhistory_step, 
+      fhistory_starttime, fhistory_endtime, 
+      fhistory_remark, fhistory_operator, fhistory_operate_time, 
+      fhistory_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{fhistoryFactoryid,jdbcType=INTEGER}, #{fhistoryStep,jdbcType=VARCHAR}, 
+      #{fhistoryStarttime,jdbcType=TIMESTAMP}, #{fhistoryEndtime,jdbcType=TIMESTAMP}, 
+      #{fhistoryRemark,jdbcType=VARCHAR}, #{fhistoryOperator,jdbcType=VARCHAR}, #{fhistoryOperateTime,jdbcType=TIMESTAMP}, 
+      #{fhistoryOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesFhistory" >
+    insert into mes_fhistory
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fhistoryFactoryid != null" >
+        fhistory_factoryid,
+      </if>
+      <if test="fhistoryStep != null" >
+        fhistory_step,
+      </if>
+      <if test="fhistoryStarttime != null" >
+        fhistory_starttime,
+      </if>
+      <if test="fhistoryEndtime != null" >
+        fhistory_endtime,
+      </if>
+      <if test="fhistoryRemark != null" >
+        fhistory_remark,
+      </if>
+      <if test="fhistoryOperator != null" >
+        fhistory_operator,
+      </if>
+      <if test="fhistoryOperateTime != null" >
+        fhistory_operate_time,
+      </if>
+      <if test="fhistoryOperateIp != null" >
+        fhistory_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fhistoryFactoryid != null" >
+        #{fhistoryFactoryid,jdbcType=INTEGER},
+      </if>
+      <if test="fhistoryStep != null" >
+        #{fhistoryStep,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryStarttime != null" >
+        #{fhistoryStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryEndtime != null" >
+        #{fhistoryEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryRemark != null" >
+        #{fhistoryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryOperator != null" >
+        #{fhistoryOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryOperateTime != null" >
+        #{fhistoryOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryOperateIp != null" >
+        #{fhistoryOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesFhistory" >
+    update mes_fhistory
+    <set >
+      <if test="fhistoryFactoryid != null" >
+        fhistory_factoryid = #{fhistoryFactoryid,jdbcType=INTEGER},
+      </if>
+      <if test="fhistoryStep != null" >
+        fhistory_step = #{fhistoryStep,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryStarttime != null" >
+        fhistory_starttime = #{fhistoryStarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryEndtime != null" >
+        fhistory_endtime = #{fhistoryEndtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryRemark != null" >
+        fhistory_remark = #{fhistoryRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryOperator != null" >
+        fhistory_operator = #{fhistoryOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="fhistoryOperateTime != null" >
+        fhistory_operate_time = #{fhistoryOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="fhistoryOperateIp != null" >
+        fhistory_operate_ip = #{fhistoryOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesFhistory" >
+    update mes_fhistory
+    set fhistory_factoryid = #{fhistoryFactoryid,jdbcType=INTEGER},
+      fhistory_step = #{fhistoryStep,jdbcType=VARCHAR},
+      fhistory_starttime = #{fhistoryStarttime,jdbcType=TIMESTAMP},
+      fhistory_endtime = #{fhistoryEndtime,jdbcType=TIMESTAMP},
+      fhistory_remark = #{fhistoryRemark,jdbcType=VARCHAR},
+      fhistory_operator = #{fhistoryOperator,jdbcType=VARCHAR},
+      fhistory_operate_time = #{fhistoryOperateTime,jdbcType=TIMESTAMP},
+      fhistory_operate_ip = #{fhistoryOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

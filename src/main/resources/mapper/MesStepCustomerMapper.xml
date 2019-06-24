@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStepCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStep" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="step_name" property="stepName" jdbcType="VARCHAR" />
+    <result column="step_remark" property="stepRemark" jdbcType="VARCHAR" />
+    <result column="step_operator" property="stepOperator" jdbcType="VARCHAR" />
+    <result column="step_operate_time" property="stepOperateTime" jdbcType="TIMESTAMP" />
+    <result column="step_operate_ip" property="stepOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, step_name, step_remark, step_operator, step_operate_time, step_operate_ip
+  </sql>
+   
+  <select id="countBySearch" parameterType="map" resultType="int">
+    select count(mes_step.id) from mes_step
+  </select>
+  
+  <!-- 分页-左连接 -->
+  <select id="getPageListBySearch" parameterType="map" resultMap="BaseResultMap">
+  	select <include refid="Base_Column_List"></include> from mes_step
+  	order by mes_step.id
+  	limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <select id="stepsAll" resultMap="BaseResultMap">
+  	select * from mes_step
+  </select>
+  
+  <select id="selectIdByStep" parameterType="map" resultType="int">
+  	select id from mes_step where step_name =#{step}
+  </select>
+  
+</mapper>

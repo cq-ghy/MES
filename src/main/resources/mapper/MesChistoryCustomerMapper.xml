@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesChistoryCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesChistory" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="chistory_factoryid" property="chistoryFactoryid" jdbcType="INTEGER" />
+    <result column="chistory_step" property="chistoryStep" jdbcType="VARCHAR" />
+    <result column="chistory_time" property="chistoryTime" jdbcType="TIMESTAMP" />
+    <result column="chistory_goal" property="chistoryGoal" jdbcType="VARCHAR" />
+    <result column="chistory_result" property="chistoryResult" jdbcType="VARCHAR" />
+    <result column="chistory_storageid" property="chistoryStorageid" jdbcType="INTEGER" />
+    <result column="chistory_remark" property="chistoryRemark" jdbcType="VARCHAR" />
+    <result column="chistory_status" property="chistoryStatus" jdbcType="INTEGER" />
+    <result column="chistory_operator" property="chistoryOperator" jdbcType="VARCHAR" />
+    <result column="chistory_operate_time" property="chistoryOperateTime" jdbcType="TIMESTAMP" />
+    <result column="chistory_operate_ip" property="chistoryOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, chistory_factoryid, chistory_step, chistory_time, chistory_goal, chistory_result, 
+    chistory_storageid, chistory_remark, chistory_status, chistory_operator, chistory_operate_time, 
+    chistory_operate_ip
+  </sql>
+  
+  <select id="selectFhistorysInfoById" parameterType="map" resultMap="BaseResultMap">
+  	select 
+  	<include refid="Base_Column_List"></include>
+  	from mes_chistory where chistory_factoryid = #{id}
+  </select>
+  
+</mapper>

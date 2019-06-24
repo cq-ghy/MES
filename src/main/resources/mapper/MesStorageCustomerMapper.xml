@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesStorageCustomerMapper">
+
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesStorage" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="storage_name" property="storageName" jdbcType="VARCHAR" />
+    <result column="storage_remark" property="storageRemark" jdbcType="VARCHAR" />
+    <result column="storage_operator" property="storageOperator" jdbcType="VARCHAR" />
+    <result column="storage_operate_time" property="storageOperateTime" jdbcType="TIMESTAMP" />
+    <result column="storage_operate_ip" property="storageOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, storage_name, storage_remark, storage_operator, storage_operate_time, storage_operate_ip
+  </sql>
+	
+	<select id="counts" resultType="int">
+		SELECT count(1)
+		FROM mes_storage
+	</select>
+
+	<select id="getPageList" parameterType="map" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM mes_storage
+		ORDER BY storage_operate_time DESC,id DESC
+		limit
+		#{page.offset}, #{page.pageSize}
+	</select>
+	
+	<select id="selectIdByName" parameterType="map" resultType="int">
+		SELECT id FROM mes_storage WHERE storage_name =#{stockName}
+	</select>
+</mapper>

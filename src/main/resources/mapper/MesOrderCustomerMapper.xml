@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesOrderCustomerMapper">
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesOrder" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="order_clientname" property="orderClientname" jdbcType="VARCHAR" />
+    <result column="order_productname" property="orderProductname" jdbcType="VARCHAR" />
+    <result column="order_contractid" property="orderContractid" jdbcType="VARCHAR" />
+    <result column="order_imgid" property="orderImgid" jdbcType="VARCHAR" />
+    <result column="order_materialname" property="orderMaterialname" jdbcType="VARCHAR" />
+    <result column="order_cometime" property="orderCometime" jdbcType="TIMESTAMP" />
+    <result column="order_committime" property="orderCommittime" jdbcType="TIMESTAMP" />
+    <result column="order_inventorystatus" property="orderInventorystatus" jdbcType="INTEGER" />
+    <result column="order_salestatus" property="orderSalestatus" jdbcType="CHAR" />
+    <result column="order_materialsource" property="orderMaterialsource" jdbcType="CHAR" />
+    <result column="order_hurrystatus" property="orderHurrystatus" jdbcType="INTEGER" />
+    <result column="order_status" property="orderStatus" jdbcType="INTEGER" />
+    <result column="order_remark" property="orderRemark" jdbcType="VARCHAR" />
+    <result column="order_operator" property="orderOperator" jdbcType="VARCHAR" />
+    <result column="order_operate_time" property="orderOperateTime" jdbcType="TIMESTAMP" />
+    <result column="order_operate_ip" property="orderOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, order_id, order_clientname, order_productname, order_contractid, order_imgid, 
+    order_materialname, order_cometime, order_committime, order_inventorystatus, order_salestatus, 
+    order_materialsource, order_hurrystatus, order_status, order_remark, order_operator, 
+    order_operate_time, order_operate_ip
+  </sql>
+	
+	<select id="getOrderCount" resultType="Long">
+		SELECT
+		COUNT( 1 )
+		FROM
+		mes_order
+	</select>
+	<!-- 
+	WHERE
+		oid IS NOT NULL and (oid like 'ZX%' or oid like 'zx%');
+	 -->
+	<select id="countBySearchDto" parameterType="map"
+		resultType="int">
+		SELECT count(1)
+		FROM mes_order
+		<include refid="queryConditions" />
+	</select>
+    <!-- 以下就是分页版块 -->
+	<select id="getPageListBySearchDto" parameterType="map"
+		resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM mes_order
+		<include refid="queryConditions" />
+		ORDER BY order_operate_time DESC,id DESC
+		limit #{page.offset}, #{page.pageSize}
+	</select>
+	
+	<update id="batchStart" parameterType="list">
+		  update mes_order set order_status=1
+		  where 
+		  id in
+		  <foreach item="item" index="index" collection="list"
+		      open="(" separator="," close=")">
+		        #{item}
+		  </foreach>
+	</update>
+	
+	<!-- where：帮助你增加一个where拼接，解下来将第一个出现的and去掉 -->
+	<sql id="queryConditions">
+		<where>
+			<if test="dto.search_status != null">
+				AND order_status = #{dto.search_status}
+			</if>
+			<if test="dto.keyword != null and dto.keyword != ''">
+				AND ((order_id like #{dto.keyword}) or (order_clientname like #{dto.keyword}) or
+				(order_productname like #{dto.keyword}) or (order_contractid like
+				#{dto.keyword})or (order_materialname like #{dto.keyword})or (order_materialsource like
+				#{dto.keyword}) or (order_imgid like #{dto.keyword}))
+			</if>
+			<if test="dto.fromTime != null and dto.toTime != null">
+				AND order_committime BETWEEN #{dto.fromTime} AND #{dto.toTime}
+			</if>
+		</where>
+	</sql>
+	
+	<select id="selectByOrderId" parameterType="map" resultMap="BaseResultMap">
+		select <include refid="Base_Column_List"></include> from mes_order
+		where mes_order.order_id=#{orderid}
+	</select>
+</mapper>

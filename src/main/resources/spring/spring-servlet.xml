@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	
+    <!-- 启动注解驱动的spring mvc 功能 -->
+    <mvc:annotation-driven/>
+<!-- 	<mvc:default-servlet-handler/>  放行资源的第三种方式
+ -->  	
+ 	<!-- 配置拦截器 -->
+ 	<mvc:interceptors>
+ 		<bean class="com.haoyu.common.HttpInterceptor"></bean>
+ 		<mvc:interceptor> 
+ 	    	<mvc:mapping path="/**"/>  
+        	<bean class="com.haoyu.interceptor.SameUrlDataInterceptor"/>
+        </mvc:interceptor>  
+ 	</mvc:interceptors>
+ 
+ 	<!-- 启动包扫描功能 -->
+    <context:component-scan base-package="com.haoyu.controller" />
+    <context:component-scan base-package="com.haoyu.service" />
+    
+ 	<mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/bootstrap3.3.5/" mapping="/bootstrap3.3.5/**"/>
+    <mvc:resources location="/assets/" mapping="/assets/**"/>
+    <mvc:resources location="/ztree/" mapping="/ztree/**"/>
+    <mvc:resources location="/WEB-INF/views/order/" mapping="/order/**"/>
+    <mvc:resources location="/WEB-INF/views/plan/" mapping="/plan/**"/>
+    <mvc:resources location="/WEB-INF/views/product/" mapping="/product/**"/>
+    <mvc:resources location="/WEB-INF/views/storage/" mapping="/storage/**"/>
+    <mvc:resources location="/WEB-INF/views/stock/" mapping="/stock/**"/>
+    <mvc:resources location="/WEB-INF/views/factory/" mapping="/factory/**"/>
+    <mvc:resources location="/WEB-INF/views/step/" mapping="/step/**"/>
+    
+<!--     <mvc:resources location="/template/" mapping="/template/**"/> 
+ -->    
+<!--     <mvc:resources location="/WEB-INF/views/order/" mapping="/order/**"/> 
+ -->    
+    <!-- 配置全局异常类 -->
+    <bean class="com.haoyu.common.SpringExceptionResolver"></bean>
+    <!-- 配置全局上下文 -->
+    <bean id="application" class="com.haoyu.common.ApplicationContextHelper"></bean>
+	<!-- 配置视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" />
+	<!-- 配置json解析器 -->
+    <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+	<!-- 默认视图解析器 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/views/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>

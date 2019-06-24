@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoyu.dao.MesPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.haoyu.model.MesPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plan_orderid" property="planOrderid" jdbcType="VARCHAR" />
+    <result column="plan_productname" property="planProductname" jdbcType="VARCHAR" />
+    <result column="plan_clientname" property="planClientname" jdbcType="VARCHAR" />
+    <result column="plan_contractid" property="planContractid" jdbcType="VARCHAR" />
+    <result column="plan_imgid" property="planImgid" jdbcType="VARCHAR" />
+    <result column="plan_materialname" property="planMaterialname" jdbcType="VARCHAR" />
+    <result column="plan_materialdesc" property="planMaterialdesc" jdbcType="VARCHAR" />
+    <result column="plan_currentstatus" property="planCurrentstatus" jdbcType="VARCHAR" />
+    <result column="plan_currentremark" property="planCurrentremark" jdbcType="VARCHAR" />
+    <result column="plan_salestatus" property="planSalestatus" jdbcType="VARCHAR" />
+    <result column="plan_materialsource" property="planMaterialsource" jdbcType="VARCHAR" />
+    <result column="plan_hurrystatus" property="planHurrystatus" jdbcType="INTEGER" />
+    <result column="plan_status" property="planStatus" jdbcType="INTEGER" />
+    <result column="plan_cometime" property="planCometime" jdbcType="TIMESTAMP" />
+    <result column="plan_committime" property="planCommittime" jdbcType="TIMESTAMP" />
+    <result column="plan_workstarttime" property="planWorkstarttime" jdbcType="TIMESTAMP" />
+    <result column="plan_workendtime" property="planWorkendtime" jdbcType="TIMESTAMP" />
+    <result column="plan_inventorystatus" property="planInventorystatus" jdbcType="INTEGER" />
+    <result column="plan_remark" property="planRemark" jdbcType="VARCHAR" />
+    <result column="plan_operator" property="planOperator" jdbcType="VARCHAR" />
+    <result column="plan_operate_time" property="planOperateTime" jdbcType="TIMESTAMP" />
+    <result column="plan_operate_ip" property="planOperateIp" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, plan_orderid, plan_productname, plan_clientname, plan_contractid, plan_imgid, 
+    plan_materialname, plan_materialdesc, plan_currentstatus, plan_currentremark, plan_salestatus, 
+    plan_materialsource, plan_hurrystatus, plan_status, plan_cometime, plan_committime, 
+    plan_workstarttime, plan_workendtime, plan_inventorystatus, plan_remark, plan_operator, 
+    plan_operate_time, plan_operate_ip
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from mes_plan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from mes_plan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.haoyu.model.MesPlan" >
+    insert into mes_plan (id, plan_orderid, plan_productname, 
+      plan_clientname, plan_contractid, plan_imgid, 
+      plan_materialname, plan_materialdesc, plan_currentstatus, 
+      plan_currentremark, plan_salestatus, plan_materialsource, 
+      plan_hurrystatus, plan_status, plan_cometime, 
+      plan_committime, plan_workstarttime, 
+      plan_workendtime, plan_inventorystatus, 
+      plan_remark, plan_operator, plan_operate_time, 
+      plan_operate_ip)
+    values (#{id,jdbcType=INTEGER}, #{planOrderid,jdbcType=VARCHAR}, #{planProductname,jdbcType=VARCHAR}, 
+      #{planClientname,jdbcType=VARCHAR}, #{planContractid,jdbcType=VARCHAR}, #{planImgid,jdbcType=VARCHAR}, 
+      #{planMaterialname,jdbcType=VARCHAR}, #{planMaterialdesc,jdbcType=VARCHAR}, #{planCurrentstatus,jdbcType=VARCHAR}, 
+      #{planCurrentremark,jdbcType=VARCHAR}, #{planSalestatus,jdbcType=VARCHAR}, #{planMaterialsource,jdbcType=VARCHAR}, 
+      #{planHurrystatus,jdbcType=INTEGER}, #{planStatus,jdbcType=INTEGER}, #{planCometime,jdbcType=TIMESTAMP}, 
+      #{planCommittime,jdbcType=TIMESTAMP}, #{planWorkstarttime,jdbcType=TIMESTAMP}, 
+      #{planWorkendtime,jdbcType=TIMESTAMP}, #{planInventorystatus,jdbcType=INTEGER}, 
+      #{planRemark,jdbcType=VARCHAR}, #{planOperator,jdbcType=VARCHAR}, #{planOperateTime,jdbcType=TIMESTAMP}, 
+      #{planOperateIp,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.haoyu.model.MesPlan" >
+    insert into mes_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="planOrderid != null" >
+        plan_orderid,
+      </if>
+      <if test="planProductname != null" >
+        plan_productname,
+      </if>
+      <if test="planClientname != null" >
+        plan_clientname,
+      </if>
+      <if test="planContractid != null" >
+        plan_contractid,
+      </if>
+      <if test="planImgid != null" >
+        plan_imgid,
+      </if>
+      <if test="planMaterialname != null" >
+        plan_materialname,
+      </if>
+      <if test="planMaterialdesc != null" >
+        plan_materialdesc,
+      </if>
+      <if test="planCurrentstatus != null" >
+        plan_currentstatus,
+      </if>
+      <if test="planCurrentremark != null" >
+        plan_currentremark,
+      </if>
+      <if test="planSalestatus != null" >
+        plan_salestatus,
+      </if>
+      <if test="planMaterialsource != null" >
+        plan_materialsource,
+      </if>
+      <if test="planHurrystatus != null" >
+        plan_hurrystatus,
+      </if>
+      <if test="planStatus != null" >
+        plan_status,
+      </if>
+      <if test="planCometime != null" >
+        plan_cometime,
+      </if>
+      <if test="planCommittime != null" >
+        plan_committime,
+      </if>
+      <if test="planWorkstarttime != null" >
+        plan_workstarttime,
+      </if>
+      <if test="planWorkendtime != null" >
+        plan_workendtime,
+      </if>
+      <if test="planInventorystatus != null" >
+        plan_inventorystatus,
+      </if>
+      <if test="planRemark != null" >
+        plan_remark,
+      </if>
+      <if test="planOperator != null" >
+        plan_operator,
+      </if>
+      <if test="planOperateTime != null" >
+        plan_operate_time,
+      </if>
+      <if test="planOperateIp != null" >
+        plan_operate_ip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="planOrderid != null" >
+        #{planOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="planProductname != null" >
+        #{planProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="planClientname != null" >
+        #{planClientname,jdbcType=VARCHAR},
+      </if>
+      <if test="planContractid != null" >
+        #{planContractid,jdbcType=VARCHAR},
+      </if>
+      <if test="planImgid != null" >
+        #{planImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialname != null" >
+        #{planMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialdesc != null" >
+        #{planMaterialdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="planCurrentstatus != null" >
+        #{planCurrentstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planCurrentremark != null" >
+        #{planCurrentremark,jdbcType=VARCHAR},
+      </if>
+      <if test="planSalestatus != null" >
+        #{planSalestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialsource != null" >
+        #{planMaterialsource,jdbcType=VARCHAR},
+      </if>
+      <if test="planHurrystatus != null" >
+        #{planHurrystatus,jdbcType=INTEGER},
+      </if>
+      <if test="planStatus != null" >
+        #{planStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planCometime != null" >
+        #{planCometime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planCommittime != null" >
+        #{planCommittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkstarttime != null" >
+        #{planWorkstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkendtime != null" >
+        #{planWorkendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planInventorystatus != null" >
+        #{planInventorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="planRemark != null" >
+        #{planRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="planOperator != null" >
+        #{planOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="planOperateTime != null" >
+        #{planOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planOperateIp != null" >
+        #{planOperateIp,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.haoyu.model.MesPlan" >
+    update mes_plan
+    <set >
+      <if test="planOrderid != null" >
+        plan_orderid = #{planOrderid,jdbcType=VARCHAR},
+      </if>
+      <if test="planProductname != null" >
+        plan_productname = #{planProductname,jdbcType=VARCHAR},
+      </if>
+      <if test="planClientname != null" >
+        plan_clientname = #{planClientname,jdbcType=VARCHAR},
+      </if>
+      <if test="planContractid != null" >
+        plan_contractid = #{planContractid,jdbcType=VARCHAR},
+      </if>
+      <if test="planImgid != null" >
+        plan_imgid = #{planImgid,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialname != null" >
+        plan_materialname = #{planMaterialname,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialdesc != null" >
+        plan_materialdesc = #{planMaterialdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="planCurrentstatus != null" >
+        plan_currentstatus = #{planCurrentstatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planCurrentremark != null" >
+        plan_currentremark = #{planCurrentremark,jdbcType=VARCHAR},
+      </if>
+      <if test="planSalestatus != null" >
+        plan_salestatus = #{planSalestatus,jdbcType=VARCHAR},
+      </if>
+      <if test="planMaterialsource != null" >
+        plan_materialsource = #{planMaterialsource,jdbcType=VARCHAR},
+      </if>
+      <if test="planHurrystatus != null" >
+        plan_hurrystatus = #{planHurrystatus,jdbcType=INTEGER},
+      </if>
+      <if test="planStatus != null" >
+        plan_status = #{planStatus,jdbcType=INTEGER},
+      </if>
+      <if test="planCometime != null" >
+        plan_cometime = #{planCometime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planCommittime != null" >
+        plan_committime = #{planCommittime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkstarttime != null" >
+        plan_workstarttime = #{planWorkstarttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planWorkendtime != null" >
+        plan_workendtime = #{planWorkendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planInventorystatus != null" >
+        plan_inventorystatus = #{planInventorystatus,jdbcType=INTEGER},
+      </if>
+      <if test="planRemark != null" >
+        plan_remark = #{planRemark,jdbcType=VARCHAR},
+      </if>
+      <if test="planOperator != null" >
+        plan_operator = #{planOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="planOperateTime != null" >
+        plan_operate_time = #{planOperateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="planOperateIp != null" >
+        plan_operate_ip = #{planOperateIp,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.haoyu.model.MesPlan" >
+    update mes_plan
+    set plan_orderid = #{planOrderid,jdbcType=VARCHAR},
+      plan_productname = #{planProductname,jdbcType=VARCHAR},
+      plan_clientname = #{planClientname,jdbcType=VARCHAR},
+      plan_contractid = #{planContractid,jdbcType=VARCHAR},
+      plan_imgid = #{planImgid,jdbcType=VARCHAR},
+      plan_materialname = #{planMaterialname,jdbcType=VARCHAR},
+      plan_materialdesc = #{planMaterialdesc,jdbcType=VARCHAR},
+      plan_currentstatus = #{planCurrentstatus,jdbcType=VARCHAR},
+      plan_currentremark = #{planCurrentremark,jdbcType=VARCHAR},
+      plan_salestatus = #{planSalestatus,jdbcType=VARCHAR},
+      plan_materialsource = #{planMaterialsource,jdbcType=VARCHAR},
+      plan_hurrystatus = #{planHurrystatus,jdbcType=INTEGER},
+      plan_status = #{planStatus,jdbcType=INTEGER},
+      plan_cometime = #{planCometime,jdbcType=TIMESTAMP},
+      plan_committime = #{planCommittime,jdbcType=TIMESTAMP},
+      plan_workstarttime = #{planWorkstarttime,jdbcType=TIMESTAMP},
+      plan_workendtime = #{planWorkendtime,jdbcType=TIMESTAMP},
+      plan_inventorystatus = #{planInventorystatus,jdbcType=INTEGER},
+      plan_remark = #{planRemark,jdbcType=VARCHAR},
+      plan_operator = #{planOperator,jdbcType=VARCHAR},
+      plan_operate_time = #{planOperateTime,jdbcType=TIMESTAMP},
+      plan_operate_ip = #{planOperateIp,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
