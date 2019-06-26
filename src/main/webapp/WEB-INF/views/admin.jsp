@@ -147,7 +147,7 @@
 					<ul class="submenu">
 						<li class=""><a class="popstyle"
 							href="/product/productinsert.page" target="_blank"> <i
-								class="menu-icon fa fa-caret-right"></i> 材料设置
+								class="menu-icon fa fa-caret-right"></i>材料管理
 						</a> <b class="arrow"></b></li>
 						<li class=""><a class="popstyle" href="/product/product.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
@@ -216,14 +216,14 @@
 				</a> <b class="arrow"></b>
 
 					<ul class="submenu">
-						<li class=""><a class="popstyle" href="/plan/proplan.page"
+						<!-- <li class=""><a class="popstyle" href="/plan/proplan.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								生产计划安排
-						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="/room/dzleftroom.page"
+						</a> <b class="arrow"></b></li> -->
+						<!-- <li class=""><a class="popstyle" href="/room/dzleftroom.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								余料管理
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 						<li class=""><a class="popstyle" href="/factory/dzfactory.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								锻造车间
