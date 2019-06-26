@@ -68,7 +68,7 @@
 					target="_blank"> <i class="menu-icon fa fa-tachometer"></i> <span
 						class="menu-text"> 首页 </span>
 				</a> <b class="arrow"></b></li>
-				<li class=""><a href="#" class="dropdown-toggle"> <i
+				<!-- <li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon glyphicon glyphicon-user"></i> <span
 						class="menu-text"> 权限管理 </span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
@@ -85,14 +85,14 @@
 							href="/sys/aclModule/acl.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 权限管理
 						</a> <b class="arrow"></b></li>
-						<!--    <li class="">
+						   <li class="">
                         <a class="popstyle" href="/sys/log/log.page" target="_blank">
                             <i class="menu-icon fa fa-caret-right"></i>
                             权限更新记录
                         </a>
                         <b class="arrow"></b>
-                    </li>  -->
-					</ul></li>
+                    </li> 
+					</ul></li> -->
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-pencil-square-o"></i> <span
@@ -165,10 +165,10 @@
 							href="/product/productBindList.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 材料绑定
 						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle"
+						<!-- <li class=""><a class="popstyle"
 							href="/product/productBindList.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 历史查询
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 					</ul></li>
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
