@@ -196,7 +196,7 @@
 							href="/stock/productroom.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 成品库
 						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="/stock/dzroom.page"
+						<!-- <li class=""><a class="popstyle" href="/stock/dzroom.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								锻造库
 						</a> <b class="arrow"></b></li>
@@ -207,7 +207,7 @@
 						<li class=""><a class="popstyle" href="/stock/jjroom.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								机加库
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 					</ul></li>
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
