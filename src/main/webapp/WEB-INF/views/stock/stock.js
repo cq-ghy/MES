@@ -273,55 +273,8 @@ $(function() {
 		            e.preventDefault();
 					//阻止事件传播
 		            e.stopPropagation();
-					//获取orderid
-		            var orderId = $(this).attr("data-id");
-					//弹出order的修改弹窗 
-		            $("#dialog-orderupdate-form").dialog({
-		                model: true,
-		                title: "编辑库存",
-		                open: function(event, ui) {
-		             	    $(".ui-dialog").css("width","600px");
-		                    $(".ui-dialog-titlebar-close", $(this).parent()).hide();
-		                  	//将form表单中的数据清空，使用jquery转dom对象
-		                    $("#orderUpdateForm")[0].reset();
-		                  	//拿到map中以键值对，id-order对象结构的对象,用来向form表单中传递数据
-		                    var targetOrder = orderMap[orderId];
-		                  	//如果取出这个对象
-		                    if (targetOrder) {
-								/////////////////////////////////////////////////////////////////
-								$("#input-Id2").val(targetOrder.id);
-								$("#input-stockMid2").val(targetOrder.stockMid);
-								$("#input-stockTargetweight2").val(targetOrder.stockTargetweight);
-								$("#input-stockRealweight2").val(targetOrder.stockRealweight);
-								$("#input-stockLeftweight2").val(targetOrder.stockLeftweight);
-								$("#input-stockMaterialname2").val(targetOrder.stockMaterialname);
-								$("#input-stockIrontype2").val(targetOrder.stockIrontype);
-								$("#input-stockIrontypeweight2").val(targetOrder.stockIrontypeweight);
-								$("#input-stockImgid2").val(targetOrder.stockImgid);
-								$("#input-stockMaterialsource2").val(targetOrder.stockMaterialsource);
-								$("#input-stockStatus2").val(targetOrder.stockStatus);
-								$("#input-stockCheck2").val(targetOrder.stockCheck);
-								$("#input-stockRemark2").val(targetOrder.stockRemark);
-								$("#input-stockStorageId2").val(targetOrder.stockStorageId);
-								/////////////////////////////////////////////////////////////////
-		                    }
-		                },
-		                buttons : {
-		                    "更新": function(e) {
-		                        e.preventDefault();
-		                        updateOrder(false, function (data) {
-		                            $("#dialog-orderupdate-form").dialog("close");
-		            				$("#orderPage .pageNo").val(1);
-		                            loadOrderList();
-		                        }, function (data) {
-		                            showMessage("更新库存", data.msg, false);
-		                        })
-		                    },
-		                    "取消": function (data) {
-		                        $("#dialog-orderupdate-form").dialog("close");
-		                    }
-		                }
-		            });
+		            var productId=$(".productId").attr("data-id");
+		            window.location.href="/product/productBind.page?id="+productId;
 		        });
 			   }  
 			//////////////////////////////////////////////////////////////
