@@ -4,7 +4,7 @@
  <tr role="row" class="stock-name odd" data-id="{{id}}"><!--even -->
 	<td><input name="checkbox" type="checkbox" class="batchStart-check"/></td>
 	<td>{{storage.storageName}}</td>
-	<td>{{product.productId}}</td>
+	<td class="productId" data-id="{{product.id}}">{{product.productId}}</td>
 	<td>{{stockOrdername}}</td>
 	<td>{{stockImgid}}</td>
 	<td>{{stockProductname}}</td>
