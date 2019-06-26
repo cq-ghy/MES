@@ -205,7 +205,7 @@
 	  	and
 	  	mes_product.product_leftweight >0
   		<if test="dto.keyword != null">
-  			and (mes_product.product_irontype like #{dto.keyword} or mes_product.product_materialname like #{dto.keyword}
+  			and (mes_product.product_id like #{dto.keyword} or mes_product.product_irontype like #{dto.keyword} or mes_product.product_materialname like #{dto.keyword}
   			or mes_product.product_imgid like #{dto.keyword})
   		</if>
   		<if test="dto.search_source !=null">
