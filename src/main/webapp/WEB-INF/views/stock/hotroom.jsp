@@ -142,7 +142,7 @@
 									<th tabindex="0" aria-controls="dynamic-table" rowspan="1"
 										colspan="1">出库对象</th>
 									<th class="sorting_disabled" rowspan="1" colspan="1"
-										aria-label="">操作</th>
+										aria-label="">锻造关系</th>
 								</tr>
 							</thead>
 							<tbody id="stockList"></tbody>

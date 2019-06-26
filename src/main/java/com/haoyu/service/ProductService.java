@@ -151,10 +151,11 @@ public class ProductService {
 		if (StringUtils.isNotBlank(param.getKeyword())) {
 			dto.setKeyword("%" + param.getKeyword() + "%");
 		}
+		
 		if (StringUtils.isNotBlank(param.getSearch_source())) {
 			dto.setSearch_source(param.getSearch_source());
-			;
 		}
+		
 		if (param.getSearch_status() != null) {
 			dto.setSearch_status(param.getSearch_status());
 		}
