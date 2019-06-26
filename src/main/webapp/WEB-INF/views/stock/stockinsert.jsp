@@ -78,9 +78,9 @@
 										<option value="2">半成品库</option>
 										<option value="3">成品库</option>
 										<option value="4">废料库</option>
-										<option value="5">锻造车间</option>
+										<!-- <option value="5">锻造车间</option>
 										<option value="6">热处理车间</option>
-										<option value="7">机加车间</option>
+										<option value="7">机加车间</option> -->
 								</select></td>
 							</tr>
 							<tr>
