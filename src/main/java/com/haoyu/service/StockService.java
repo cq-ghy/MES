@@ -11,13 +11,18 @@ import org.springframework.stereotype.Service;
 
 import com.haoyu.beans.PageQuery;
 import com.haoyu.beans.PageResult;
+import com.haoyu.dao.MesFactoryCustomerMapper;
+import com.haoyu.dao.MesFactoryMapper;
+import com.haoyu.dao.MesOrderCustomerMapper;
 import com.haoyu.dao.MesOrderMapper;
+import com.haoyu.dao.MesProductCustomerMapper;
 import com.haoyu.dao.MesProductMapper;
 import com.haoyu.dao.MesStockCustomerMapper;
 import com.haoyu.dao.MesStockMapper;
 import com.haoyu.dao.MesStorageCustomerMapper;
 import com.haoyu.dto.SearchStockDto;
 import com.haoyu.dto.StockDto;
+import com.haoyu.model.MesFactory;
 import com.haoyu.model.MesOrder;
 import com.haoyu.model.MesProduct;
 import com.haoyu.model.MesStock;
@@ -27,18 +32,28 @@ import com.haoyu.util.BeanValidator;
 
 @Service
 public class StockService {
+	
 	@Resource
 	private MesStockMapper stockMapper;
 	@Resource
+	private MesStockCustomerMapper mesStockCustomerMapper;
+	@Resource
 	private MesProductMapper productMapper;
+	@Resource
+	private MesProductCustomerMapper mesProductCustomerMapper;
 	@Resource
 	private MesOrderMapper orderMapper;
 	@Resource
+	private MesOrderCustomerMapper mesOrderCustomerMapper;
+	@Resource
 	private MesStorageCustomerMapper mesStorageCustomerMapper;
 	@Resource
-	private MesStockCustomerMapper mesStockCustomerMapper;
+	private MesFactoryMapper mesFactoryMapper;
+	@Resource
+	private MesFactoryCustomerMapper mesFactoryCustomerMapper;
 	@Resource
 	private SqlSession sqlSession;
+	
 	//增加操作
 	public void insert(MesStockVo stockVo) {
 		//TODO  vo  上必须要写校验注解
@@ -115,6 +130,12 @@ public class StockService {
 		}
 	}
 	//批量出库
+	/**
+	 * @param ids
+	 * @param stockOutObj
+	 * @param stockOutRemark
+	 * 出库，默认为选中钢材绑定的钢锭为真，直接生成工艺重量对应的投料重量
+	 */
 	public void batchOut(String ids, String stockOutObj, String stockOutRemark) {
 		//非空判断
 		if (StringUtils.isNotBlank(ids) && StringUtils.isNotBlank(stockOutObj)) {
@@ -146,7 +167,6 @@ public class StockService {
 		if(stock.getStockStoragestatus().equals(3)) {
 			String outobj=stock.getStockOutobj();
 			if(StringUtils.isNotBlank(outobj)) {
-				//TODO
 				//入库操作
 				stock.setId(null);
 				stock.setStockStoragestatus(1);
@@ -161,16 +181,50 @@ public class StockService {
 				//TODO  user ip  time
 				
 				stockMapper.insertSelective(stock);
-//				if(outobj.equals("原料库")||outobj.equals("半成品库")||outobj.equals("成品库")||outobj.equals("废料库")) {
-//					//1,库房
-//					
-//				}else if(outobj.equals("锻造车间")||outobj.equals("热处理车间")||outobj.equals("机加车间")) {
-//					//2,车间
-//					
-//				}else {
-//					//3,用户
-//					
-//				}
+				if(outobj.equals("原料库")||outobj.equals("半成品库")||outobj.equals("成品库")||outobj.equals("废料库")) {
+					//1,库房
+					
+				}else if(outobj.equals("锻造车间")||outobj.equals("热处理车间")||outobj.equals("机加车间")) {
+					//2,车间
+					//对应生成钢材和钢锭的生产列表
+						//获取该库存记录对应的钢材id，将其生成生产记录factory
+						Integer productId=stock.getStockProductid();
+						MesProduct product=productMapper.selectByPrimaryKey(productId);
+						//生成一条factory记录
+						MesFactory factory=MesFactory.builder().factoryStorageid(storageId)//
+								.factoryProductid(product.getId()).factoryOrderid(stock.getStockOrderid())//
+								.factoryProstatus("待派工").factoryStatus(1).build();
+						//生产车间插入一条该记录
+						mesFactoryMapper.insertSelective(factory);
+						//查询父材料绑定子材料的个数是否为0，大于0则取出所有的子材料
+						int count=0;
+						count=mesProductCustomerMapper.childCounts(productId);
+						if(count>0) {
+							List<MesProduct> mps=mesProductCustomerMapper.childs(productId);
+							//获取该钢材对应的所有子钢锭，将product的投料重量和剩余重量设置好
+							for(MesProduct childProduct:mps) {
+								childProduct.setProductRealweight(childProduct.getProductTargetweight());
+								childProduct.setProductLeftweight(childProduct.getProductTargetweight());
+								childProduct.setProductBakweight(childProduct.getProductTargetweight());
+								//原来刚才重量依次减少
+								MesProduct parentProduct=productMapper.selectByPrimaryKey(productId);
+								parentProduct.setProductLeftweight(parentProduct.getProductLeftweight()-childProduct.getProductTargetweight());
+								//实现重量
+								productMapper.updateByPrimaryKeySelective(childProduct);
+								productMapper.updateByPrimaryKeySelective(parentProduct);
+								//将这些子钢锭生成生产记录factory
+								MesFactory factoryChild=MesFactory.builder().factoryStorageid(storageId)//
+										.factoryProductid(product.getId()).factoryOrderid(childProduct.getProductOrderid())//
+										.factoryProstatus("待派工").factoryStatus(1).build();
+								//生产车间插入一条该记录
+								mesFactoryMapper.insertSelective(factoryChild);
+							}
+						}
+						
+				}else {
+					//3,用户
+					
+				}
 			}
 		}
 	}

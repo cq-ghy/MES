@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.haoyu.beans.PageQuery;
 import com.haoyu.dto.ProductDto;
 import com.haoyu.dto.SearchProductDto;
+import com.haoyu.model.MesProduct;
 
 public interface MesProductCustomerMapper {
 
@@ -25,5 +26,9 @@ public interface MesProductCustomerMapper {
 	int countBySearchParentBindListDto(@Param("dto")SearchProductDto dto);
 
 	List<ProductDto> getPageListBySearchParentBindListDto(@Param("dto")SearchProductDto dto, @Param("page")PageQuery page);
+	
+	int childCounts(@Param("parentId")Integer parentId);
+
+	List<MesProduct> childs(@Param("parentId")Integer parentId);
 	
 }
