@@ -26,9 +26,9 @@
 		<div class="col-sm-12">
 			<div class="col-xs-12">
 				<div class="table-header">
-					库房列表&nbsp;&nbsp; <a class="green" href="#"> <i
+					库房列表&nbsp;&nbsp; <!-- <a class="green" href="#"> <i
 						class="ace-icon fa fa-plus-circle orange bigger-130 order-add"></i>
-					</a>
+					</a> -->
 				</div>
 				<div>
 					<div id="dynamic-table_wrapper"
