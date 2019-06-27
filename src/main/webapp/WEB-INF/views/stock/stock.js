@@ -231,9 +231,9 @@ $(function() {
 												return function(text, render) {
 													var status = render(text);
 													if (status == '待入库') {
-														return "<span class='label label-sm label-success'>待入库</span>";
+														return "<span class='label label-sm label-warning'>待入库</span>";
 													} else if (status == '已入库') {
-														return "<span class='label label-sm label-warning'>已入库</span>";
+														return "<span class='label label-sm label-success'>已入库</span>";
 													} else {
 														return "<span class='label'>已出库</span>";
 													}
