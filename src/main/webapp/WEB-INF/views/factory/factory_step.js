@@ -82,14 +82,21 @@ $(function() {
 						}
 					});
 					if(currentStep=='工序结束'){
-						stepTemp+="<label><input type='radio' checked='checked' name='step' value='工序结束'/>工序结束</label>";
+						stepTemp+="<label><input class='endstep' type='radio' checked='checked' name='step' value='工序结束'/>工序结束</label>";
 					}else{
-						stepTemp+="<label><input type='radio' name='step' value='工序结束'/>工序结束</label>";
+						stepTemp+="<label><input class='endstep' type='radio' name='step' value='工序结束'/>工序结束</label>";
 					}
 	//				if(currentStep==null||currentStep==""){
 	//					//TODO
 	//				}
+					//在工序结束后面添加流转库房信息
+					stepTemp+="&nbsp;&nbsp;&nbsp;<select id='storageid' name='storageid' >";
+					stepTemp+="<option value='2'>半成品库</option>";
+					stepTemp+="<option value='3'>成品库</option>";
+					stepTemp+="<option value='4'>废料库</option>";
+					stepTemp+="<option value='1'>原料库</option></select>";
 					$("#stepList").html(stepTemp);
+					
 				}
 			}
 		});
