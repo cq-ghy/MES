@@ -152,6 +152,7 @@
   <sql id="queryConditions">
   		<!-- TODO keyword  time-->
   		<where>
+  			mes_factory.factory_status =1 
   			<if test="dto.storageid !=null">
   				and mes_factory.factory_storageid=#{dto.storageid} 
   			</if>
