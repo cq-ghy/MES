@@ -83,7 +83,7 @@ $(function() {// 页面开始加载
 					"factoryList" : result.data.data,// {{#orderList}}--List-(result.data.data-list<MesOrder>)
 					"date" : function() {
 						return function(text, render) {
-							if(order!=null){
+							if(this.order!=null){
 								return this.order.orderCommittime == null ? ""
 										: new Date(this.order.orderCommittime)
 								.Format("yyyy-MM-dd");
