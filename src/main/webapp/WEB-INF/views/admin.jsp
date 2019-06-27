@@ -176,10 +176,10 @@
 						class="menu-text">库存管理 </span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 					<ul class="submenu">
-						<li class=""><a class="popstyle" href="/stock/insert.page"
+						<!-- <li class=""><a class="popstyle" href="/stock/insert.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								库存设置
-						</a> <b class="arrow"></b></li>
+						</a> <b class="arrow"></b></li> -->
 						<li class=""><a class="popstyle"
 							href="/stock/sourceroom.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i> 原料库
@@ -271,7 +271,7 @@
 		</div>
 
 		<div class="main-content">
-			<iframe scrolling="no" id="innerFrame" src="/sys/dept/dept.page"
+			<iframe scrolling="no" id="innerFrame" src="/order/orderBatch.page"
 				width="100%" style="min-height: 768px;"></iframe>
 			<!--         <iframe id="innerFrame" src="/sys/dept/dept.page" width="99%" style="min-height: 768px;"></iframe>
  -->
