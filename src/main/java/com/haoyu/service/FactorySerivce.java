@@ -17,8 +17,13 @@ import com.haoyu.dao.MesFactoryCustomerMapper;
 import com.haoyu.dao.MesFactoryMapper;
 import com.haoyu.dao.MesFhistoryCustomerMapper;
 import com.haoyu.dao.MesFhistoryMapper;
+import com.haoyu.dao.MesOrderCustomerMapper;
+import com.haoyu.dao.MesOrderMapper;
+import com.haoyu.dao.MesProductCustomerMapper;
+import com.haoyu.dao.MesProductMapper;
 import com.haoyu.dao.MesStepCustomerMapper;
 import com.haoyu.dao.MesStepMapper;
+import com.haoyu.dao.MesStockMapper;
 import com.haoyu.dao.MesStorageMapper;
 import com.haoyu.dto.FactoryDto;
 import com.haoyu.dto.SearchFactoryDto;
@@ -26,13 +31,26 @@ import com.haoyu.exception.ParamException;
 import com.haoyu.model.MesChistory;
 import com.haoyu.model.MesFactory;
 import com.haoyu.model.MesFhistory;
+import com.haoyu.model.MesOrder;
+import com.haoyu.model.MesProduct;
 import com.haoyu.model.MesStep;
+import com.haoyu.model.MesStock;
 import com.haoyu.model.MesStorage;
 import com.haoyu.param.SearchFactoryParam;
 import com.haoyu.util.BeanValidator;
 
 @Service
 public class FactorySerivce {
+	@Resource
+	private MesOrderMapper mesOrderMapper;
+	@Resource
+	private MesOrderCustomerMapper mesOrderCustomerMapper;
+	@Resource
+	private MesProductMapper mesProductMapper;
+	@Resource
+	private MesProductCustomerMapper mesProductCustomerMapper;
+	@Resource
+	private MesStockMapper mesStockMapper;
 	@Resource
 	private MesStorageMapper mesStorageMapper;
 	@Resource
@@ -123,6 +141,41 @@ public class FactorySerivce {
 		}
 		return null;
 	}
+	//结束工序步骤，产品进入库存
+	public void endStep(String id, String outstorageid, String fhistoryRemark) {
+		if(StringUtils.isNoneBlank(id)&&StringUtils.isNoneBlank(outstorageid)) {
+			//factory
+			MesFactory factory=mesFactoryMapper.selectByPrimaryKey(Integer.parseInt(id));
+			//待派工  派工中  待质检   质检中   生产结束
+			factory.setFactoryProstatus("生产结束");
+			factory.setFactoryStatus(0);//结束生产可查状态
+			//库存信息录入
+			//录入需要order，plan，product的信息，所以先把factory关联的product的内容取出来，方便调用
+			Integer pid=factory.getFactoryProductid();
+			//////////////////////////////////////////////////////////////////////
+			MesProduct product=mesProductMapper.selectByPrimaryKey(pid);
+			//新增库存操作
+			MesStock mesStock=MesStock.builder().stockProductid(pid).stockProductname(product.getProductMaterialname())//
+					.stockImgid(product.getProductImgid()).stockProductsource(product.getProductMaterialsource())//
+					.stockStatus(1)//
+					.stockStorageid(Integer.parseInt(outstorageid)).build();
+			//Order*
+			if(product!=null) {
+				Integer orderid=product.getProductOrderid();
+				MesOrder mesOrder=mesOrderMapper.selectByPrimaryKey(orderid);
+				if(mesOrder!=null) {
+					mesStock.setStockOrderid(orderid);
+					mesStock.setStockOrdername(mesOrder.getOrderProductname());
+				}
+				mesStock.setStockStoragestatus(1);//待入库
+			}
+			//增加一条库存记录-待入库
+			mesStockMapper.insertSelective(mesStock);
+			//////////////////////////////////////////////////////////////////////
+			//生产环节记录更新
+			mesFactoryMapper.updateByPrimaryKeySelective(factory);
+		}
+	}
 	//待质检
 	public void preCheck(String id) {
 		if(StringUtils.isNoneBlank(id)) {
@@ -187,5 +240,5 @@ public class FactorySerivce {
 		}
 		return null;
 	}
-
+	
 }
