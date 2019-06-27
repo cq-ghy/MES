@@ -210,12 +210,14 @@ public class StockService {
 								MesProduct parentProduct=productMapper.selectByPrimaryKey(productId);
 								parentProduct.setProductLeftweight(parentProduct.getProductLeftweight()-childProduct.getProductTargetweight());
 								//实现重量
-								productMapper.updateByPrimaryKeySelective(childProduct);
-								productMapper.updateByPrimaryKeySelective(parentProduct);
 								//将这些子钢锭生成生产记录factory
 								MesFactory factoryChild=MesFactory.builder().factoryStorageid(storageId)//
-										.factoryProductid(product.getId()).factoryOrderid(childProduct.getProductOrderid())//
+										.factoryProductid(childProduct.getId()).factoryOrderid(childProduct.getProductOrderid())//
 										.factoryProstatus("待派工").factoryStatus(1).build();
+								
+								productMapper.updateByPrimaryKeySelective(childProduct);
+								
+								productMapper.updateByPrimaryKeySelective(parentProduct);
 								//生产车间插入一条该记录
 								mesFactoryMapper.insertSelective(factoryChild);
 							}
