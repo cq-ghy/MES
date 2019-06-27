@@ -90,7 +90,7 @@ $(function() {
 	//					//TODO
 	//				}
 					//在工序结束后面添加流转库房信息
-					stepTemp+="&nbsp;&nbsp;&nbsp;<select id='storageid' name='storageid' >";
+					stepTemp+="&nbsp;&nbsp;&nbsp;<select id='outstorageid' name='outstorageid' >";
 					stepTemp+="<option value='2'>半成品库</option>";
 					stepTemp+="<option value='3'>成品库</option>";
 					stepTemp+="<option value='4'>废料库</option>";
