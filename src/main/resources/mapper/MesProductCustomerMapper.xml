@@ -303,25 +303,14 @@
   <!-- 生产相关 -->
   <select id="childCounts" parameterType="map" resultType="int">
 	  	select count(mes_product.id)
-	  	parent.id parent_id,parent.product_id parent_productid
-	  	from mes_product inner join mes_order
-	  	on mes_product.product_orderid=mes_order.id
-	  	inner join mes_plan
-	  	on mes_product.product_planid=mes_plan.id
-	  	inner join mes_product parent
+	  	from mes_product inner join mes_product parent
 	  	on mes_product.p_id=parent.id
+	  	where parent.id=#{parentId}
   </select>
   
-   <select id="childs" parameterType="map" resultMap="BaseDtoResultMap">
-	  	select <include refid="Product_Base_Column_List"></include>,
-	  	<include refid="Order_Base_Column_List"></include>,
-	  	<include refid="Plan_Base_Column_List"></include>,
-	  	parent.id parent_id,parent.product_id parent_productid
-	  	from mes_product inner join mes_order
-	  	on mes_product.product_orderid=mes_order.id
-	  	inner join mes_plan
-	  	on mes_product.product_planid=mes_plan.id
-	  	inner join mes_product parent
+   <select id="childs" parameterType="map" resultMap="BaseResultMap">
+	  	select <include refid="Product_Base_Column_List"></include>
+	  	from mes_product inner join mes_product parent
 	  	on mes_product.p_id=parent.id
 	  	where parent.id=#{parentId}
   </select>
