@@ -305,14 +305,14 @@
 	  	select count(mes_product.id)
 	  	from mes_product inner join mes_product parent
 	  	on mes_product.p_id=parent.id
-	  	where parent.id=#{parentId}
+	  	where parent.id=#{parentId} and mes_product.product_realweight =0
   </select>
   
    <select id="childs" parameterType="map" resultMap="BaseResultMap">
 	  	select <include refid="Product_Base_Column_List"></include>
 	  	from mes_product inner join mes_product parent
 	  	on mes_product.p_id=parent.id
-	  	where parent.id=#{parentId}
+	  	where parent.id=#{parentId}  and mes_product.product_realweight =0
   </select>
 
 </mapper>
