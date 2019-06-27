@@ -272,7 +272,7 @@ public class ProductService {
 			Integer cid=Integer.parseInt(childId);
 			MesProduct product=mesProdcutMapper.selectByPrimaryKey(cid);
 			//解绑过程需要查看投料重量是否为空，如果为空则可以解绑
-			if(product.getProductRealweight()==null&&product.getProductRealweight()>0) {
+			if(product.getProductRealweight()!=null||product.getProductRealweight()>0) {
 				return false;
 			}
 			//status-0
