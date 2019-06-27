@@ -125,8 +125,8 @@ $(function() {
 		            var parentId=$(".bind-id").val();
 		            var childId = $(this).attr("data-id");
 		            var weight = $(this).attr("data-weight");
-		            var left_weight=parseInt($(".left-weight").val());
-		            var leftback_weight=parseInt($(".leftback-weight").val());
+		            var left_weight=parseFloat($(".left-weight").val());
+		            var leftback_weight=parseFloat($(".leftback-weight").val());
 		            //钢材的剩余重量大于钢材的剩余理论重量
 		            //剩余理论重量要大于钢锭的重量
 		            if(left_weight>=leftback_weight&&leftback_weight>=weight){
