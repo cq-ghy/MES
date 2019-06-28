@@ -96,6 +96,17 @@
 
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon fa fa-pencil-square-o"></i> <span
+						class="menu-text">图形分析</span> <b class="arrow fa fa-angle-down"></b>
+				</a> <b class="arrow"></b>
+					<ul class="submenu">
+						<li class=""><a class="popstyle" href="/analysis/analysis.page"
+							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
+								图形分析
+						</a> <b class="arrow"></b></li>
+					</ul></li>
+					
+				<li class=""><a href="#" class="dropdown-toggle"> <i
+						class="menu-icon fa fa-pencil-square-o"></i> <span
 						class="menu-text"> 基础设置 </span> <b class="arrow fa fa-angle-down"></b>
 				</a> <b class="arrow"></b>
 					<ul class="submenu">
@@ -236,6 +247,10 @@
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								机加车间
 						</a> <b class="arrow"></b></li>
+						<li class=""><a class="popstyle" href="/factory/factoryhistory.page"
+							target="_blank"><i class="menu-icon fa fa-caret-right"></i>
+								生产报告
+						</a> <b class="arrow"></b></li>
 					</ul></li>
 				<li class=""><a href="#" class="dropdown-toggle"> <i
 						class="menu-icon glyphicon glyphicon-wrench"></i> <span
@@ -247,7 +262,7 @@
 							href="/factory/check.page" target="_blank"> <i
 								class="menu-icon fa fa-caret-right"></i>质检过程
 						</a> <b class="arrow"></b></li>
-						<li class=""><a class="popstyle" href="/room/dzleftroom.page"
+						<li class=""><a class="popstyle" href="/factory/checkhistory.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								质检报告
 						</a> <b class="arrow"></b></li>
