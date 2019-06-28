@@ -125,13 +125,15 @@ public class MesFactoryController {
 
 	// 质检过程
 	@RequestMapping("/step_check.json")
-	public ModelAndView stepCheck(String id, String storageid1, String chistoryRemark, String chistoryStep,
+	public ModelAndView stepCheck(String id, String storageid1, String storageid2, String chistoryRemark, String chistoryStep,
 			String checkgoal, String checkresult, SearchFactoryParam param, PageQuery page, ModelAndView model) {
-		// TODO service
+		//service
 		if (checkresult.equals("通过")) {
 			factoryService.stepCheck(id, chistoryStep, checkgoal, checkresult, chistoryRemark);
 		} else if (checkresult.equals("需返工")) {
 			factoryService.stepCheck(id, storageid1, chistoryStep, checkgoal, checkresult, chistoryRemark);
+		}else if(checkresult.equals("产品作废")) {
+			factoryService.stepCheckWaste(id,storageid2, chistoryStep, checkgoal, checkresult, chistoryRemark);
 		}
 
 		model.addObject("searchParam", param);
