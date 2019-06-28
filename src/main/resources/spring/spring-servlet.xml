@@ -34,6 +34,7 @@
     <mvc:resources location="/WEB-INF/views/stock/" mapping="/stock/**"/>
     <mvc:resources location="/WEB-INF/views/factory/" mapping="/factory/**"/>
     <mvc:resources location="/WEB-INF/views/step/" mapping="/step/**"/>
+    <mvc:resources location="/WEB-INF/views/analysis/" mapping="/analysis/**"/>
     
 <!--     <mvc:resources location="/template/" mapping="/template/**"/> 
  -->    
