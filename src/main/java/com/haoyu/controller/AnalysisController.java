@@ -14,4 +14,9 @@ public class AnalysisController {
 		return FPATH+"analysis";
 	}
 	
+	@RequestMapping("/analysis2")
+	public String analysisPage2() {
+		return FPATH+"analysis2";
+	}
+	
 }

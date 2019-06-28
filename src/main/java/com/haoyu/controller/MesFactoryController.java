@@ -27,6 +27,12 @@ public class MesFactoryController {
 	@Resource
 	private FactorySerivce factoryService;
 
+	//生产报告
+	@RequestMapping("/factoryhistory.page")
+	public String factoryHistoryPage() {
+		return FPATH+"factoryhistory";
+	}
+	
 	// 锻造车间转跳
 	@RequestMapping("/dzfactory.page")
 	public String dzFactoryPage() {
@@ -50,7 +56,14 @@ public class MesFactoryController {
 	public String checkPage() {
 		return FPATH + "/check";
 	}
-
+	//生产历史记录分页
+	@RequestMapping("/factoryhistory.json")
+	@ResponseBody
+	public JsonData searchHistoryPage(SearchFactoryParam param, PageQuery page) {
+		PageResult<FactoryDto> pr = (PageResult<FactoryDto>) factoryService.searchHistoryPageList(param, page);
+		return JsonData.success(pr);
+	}
+	
 	// 生产过程分页
 	@RequestMapping("/factory.json")
 	@ResponseBody
@@ -71,6 +84,18 @@ public class MesFactoryController {
 		return model;
 	}
 
+	//生产记录详情页跳转
+	@RequestMapping("/factoryHistoryInfo.page")
+	public ModelAndView factoryHistoryInfoPage(SearchFactoryParam param, PageQuery page, String id, ModelAndView model) {
+		model.addObject("searchParam", param);
+		model.addObject("page", page);
+		model.addObject("id", id);
+		FactoryDto dto = factoryService.selectFactoryDtoById(id);
+		model.addObject("dto", dto);
+		model.setViewName(FPATH + "factoryhistoryinfo");
+		return model;
+	}
+	
 	// 生产详细页跳转
 	@RequestMapping("/factoryInfo.page")
 	public ModelAndView factoryInfoPage(SearchFactoryParam param, PageQuery page, String id, ModelAndView model) {

@@ -181,5 +181,47 @@
   		on mes_factory.factory_preid = mes_step.id
   		where mes_factory.id=#{id}
   </select>
+  <!-- 历史分页查询 -->
+   <select id="countBySearchHistoryDto" parameterType="map" resultType="int">
+		select 
+  		count(mes_factory.id)
+  		from mes_factory
+  		left join  mes_order
+  		on mes_factory.factory_orderid = mes_order.id
+  		left join mes_product
+  		on mes_factory.factory_productid=mes_product.id
+  		left join mes_storage
+  		on mes_factory.factory_storageid=mes_storage.id
+  		left join mes_step
+  		on mes_factory.factory_preid = mes_step.id
+  		<include refid="queryHistoryConditions"></include>
+  </select>
   
+  <select id="getPageListBySearchHistoryDto" parameterType="map" resultMap="BaseDtoResultMap">
+  		select 
+  		<include refid="Base_Column_List"></include>,
+  		<include refid="Base_Order_Column_List"></include>,
+  		<include refid="Base_Product_Column_List"></include>,
+  		<include refid="Base_Storage_Column_List"></include>,
+  		<include refid="Base_Step_Column_List"></include>
+  		from mes_factory
+  		left join  mes_order
+  		on mes_factory.factory_orderid = mes_order.id
+  		left join mes_product
+  		on mes_factory.factory_productid=mes_product.id
+  		left join mes_storage
+  		on mes_factory.factory_storageid=mes_storage.id
+  		left join mes_step
+  		on mes_factory.factory_preid = mes_step.id
+  		<include refid="queryHistoryConditions"></include>
+  		order by mes_factory.id desc
+  		limit #{page.offset},#{page.pageSize}
+  </select>
+  
+  <sql id="queryHistoryConditions">
+  		<!-- TODO keyword  time-->
+  		<where>
+  			mes_factory.factory_status =0 
+  		</where>
+  </sql>
 </mapper>

@@ -17,10 +17,10 @@
 			</button>
 
 			<div class="navbar-header pull-left">
-				<a href="/admin/page.do" class="navbar-brand"> <small> <i
+				<span  class="navbar-brand"> <small> <i
 						class="fa fa-leaf"></i> <!-- MES工厂流程系统 --> MES系统
 				</small>
-				</a>
+				</span>
 			</div>
 
 			<div class="navbar-buttons navbar-header pull-right"
@@ -64,7 +64,7 @@
 			</script>
 
 			<ul class="nav nav-list">
-				<li class="active"><a class="popstyle" href="/sys/user/page.do"
+				<li class="active"><a class="popstyle" href="/analysis/analysis.page"
 					target="_blank"> <i class="menu-icon fa fa-tachometer"></i> <span
 						class="menu-text"> 首页 </span>
 				</a> <b class="arrow"></b></li>
@@ -102,6 +102,10 @@
 						<li class=""><a class="popstyle" href="/analysis/analysis.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
 								图形分析
+						</a> <b class="arrow"></b></li>
+						<li class=""><a class="popstyle" href="/analysis/analysis2.page"
+							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
+								图形分析2
 						</a> <b class="arrow"></b></li>
 					</ul></li>
 					
@@ -264,7 +268,7 @@
 						</a> <b class="arrow"></b></li>
 						<li class=""><a class="popstyle" href="/factory/checkhistory.page"
 							target="_blank"> <i class="menu-icon fa fa-caret-right"></i>
-								质检报告
+								质检报告(正在更新)
 						</a> <b class="arrow"></b></li>
 
 					</ul></li>

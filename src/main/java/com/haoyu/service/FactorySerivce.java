@@ -72,40 +72,40 @@ public class FactorySerivce {
 
 	public PageResult<FactoryDto> searchPageList(SearchFactoryParam param, PageQuery page) {
 		// 验证页码是否为空
-				BeanValidator.check(page);
-				// 将param中的字段传入dto进行数据层的交互
-				// 自定义的数据模型，用来与数据库进行交互操作
-				// searchDto 用于分页的where语句后面
-				SearchFactoryDto dto = new SearchFactoryDto();
-				// copyparam中的值进入dto
-				if (StringUtils.isNotBlank(param.getKeyword())) {
-					dto.setKeyword("%" + param.getKeyword() + "%");
-				}
-				if (StringUtils.isNotBlank(param.getSearch_prostatus())) {
-					dto.setSearch_prostatus(param.getSearch_prostatus());
-				}
-				if (StringUtils.isNotBlank(param.getStorageid())) {
-					dto.setStorageid(Integer.parseInt(param.getStorageid()));
-				}
-				try {
-					SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					if (StringUtils.isNotBlank(param.getFromTime())) {
-						dto.setFromTime(dateFormat.parse(param.getFromTime()));
-					}
-					if (StringUtils.isNotBlank(param.getToTime())) {
-						dto.setToTime(dateFormat.parse(param.getToTime()));
-					}
-				} catch (Exception e) {
-					throw new ParamException("传入的日期格式有问题，正确格式为：yyyy-MM-dd");
-				}
+		BeanValidator.check(page);
+		// 将param中的字段传入dto进行数据层的交互
+		// 自定义的数据模型，用来与数据库进行交互操作
+		// searchDto 用于分页的where语句后面
+		SearchFactoryDto dto = new SearchFactoryDto();
+		// copyparam中的值进入dto
+		if (StringUtils.isNotBlank(param.getKeyword())) {
+			dto.setKeyword("%" + param.getKeyword() + "%");
+		}
+		if (StringUtils.isNotBlank(param.getSearch_prostatus())) {
+			dto.setSearch_prostatus(param.getSearch_prostatus());
+		}
+		if (StringUtils.isNotBlank(param.getStorageid())) {
+			dto.setStorageid(Integer.parseInt(param.getStorageid()));
+		}
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			if (StringUtils.isNotBlank(param.getFromTime())) {
+				dto.setFromTime(dateFormat.parse(param.getFromTime()));
+			}
+			if (StringUtils.isNotBlank(param.getToTime())) {
+				dto.setToTime(dateFormat.parse(param.getToTime()));
+			}
+		} catch (Exception e) {
+			throw new ParamException("传入的日期格式有问题，正确格式为：yyyy-MM-dd");
+		}
 
-				int count = mesFactoryCustomerMapper.countBySearchDto(dto);
-				if (count > 0) {
-					List<FactoryDto> orderList = mesFactoryCustomerMapper.getPageListBySearchDto(dto, page);
-					return PageResult.<FactoryDto>builder().total(count).data(orderList).build();
-				}
+		int count = mesFactoryCustomerMapper.countBySearchDto(dto);
+		if (count > 0) {
+			List<FactoryDto> orderList = mesFactoryCustomerMapper.getPageListBySearchDto(dto, page);
+			return PageResult.<FactoryDto>builder().total(count).data(orderList).build();
+		}
 
-				return PageResult.<FactoryDto>builder().build();
+		return PageResult.<FactoryDto>builder().build();
 	}
 	//根据id查询factory 带成员变量
 	public FactoryDto selectFactoryDtoById(String idTemp) {
@@ -284,5 +284,43 @@ public class FactorySerivce {
 				mesFactoryMapper.updateByPrimaryKeySelective(factory);
 			}
 		}
+	}
+	//生产历史记录分页查看
+	public PageResult<FactoryDto> searchHistoryPageList(SearchFactoryParam param, PageQuery page) {
+		// 验证页码是否为空
+		BeanValidator.check(page);
+		// 将param中的字段传入dto进行数据层的交互
+		// 自定义的数据模型，用来与数据库进行交互操作
+		// searchDto 用于分页的where语句后面
+		SearchFactoryDto dto = new SearchFactoryDto();
+		// copyparam中的值进入dto
+		if (StringUtils.isNotBlank(param.getKeyword())) {
+			dto.setKeyword("%" + param.getKeyword() + "%");
+		}
+		if (StringUtils.isNotBlank(param.getSearch_prostatus())) {
+			dto.setSearch_prostatus(param.getSearch_prostatus());
+		}
+		if (StringUtils.isNotBlank(param.getStorageid())) {
+			dto.setStorageid(Integer.parseInt(param.getStorageid()));
+		}
+		try {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			if (StringUtils.isNotBlank(param.getFromTime())) {
+				dto.setFromTime(dateFormat.parse(param.getFromTime()));
+			}
+			if (StringUtils.isNotBlank(param.getToTime())) {
+				dto.setToTime(dateFormat.parse(param.getToTime()));
+			}
+		} catch (Exception e) {
+			throw new ParamException("传入的日期格式有问题，正确格式为：yyyy-MM-dd");
+		}
+
+		int count = mesFactoryCustomerMapper.countBySearchHistoryDto(dto);
+		if (count > 0) {
+			List<FactoryDto> orderList = mesFactoryCustomerMapper.getPageListBySearchHistoryDto(dto, page);
+			return PageResult.<FactoryDto>builder().total(count).data(orderList).build();
+		}
+
+		return PageResult.<FactoryDto>builder().build();
 	}
 }

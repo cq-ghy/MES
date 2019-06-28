@@ -14,11 +14,12 @@
 </head>
 <body>
 
-	<div class="clear">
-		<div id="main2" style="width: 550px; height: 400px;float:left;"></div>
-		<div id="main" style="width: 550px; height: 400px;float:left;"></div>
-	</div>
+
 	
+	<div class="clear">
+		<div id="main3" style="width: 550px; height: 400px;float:left;"></div>
+		<div id="main4" style="width: 550px; height: 400px;float:left;"></div>
+	</div>
 	<script>
 	var app = echarts.init(document.getElementById('main4'));
 
@@ -227,7 +228,7 @@
 		var myChart = echarts.init(document.getElementById('main2'));
 		option = {
 			    title: {
-			        text: '分析模板'
+			        text: '分析'
 			    },
 			    tooltip : {
 			        trigger: 'axis',

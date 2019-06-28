@@ -16,5 +16,9 @@ public interface MesFactoryCustomerMapper {
 	List<FactoryDto> getPageListBySearchDto(@Param("dto")SearchFactoryDto dto,@Param("page") PageQuery page);
 
 	FactoryDto selectFactoryDtoById(@Param("id")Integer id);
+	//历史查询
+	int countBySearchHistoryDto(@Param("dto")SearchFactoryDto dto);
+
+	List<FactoryDto> getPageListBySearchHistoryDto(@Param("dto")SearchFactoryDto dto,@Param("page")PageQuery page);
     
 }
