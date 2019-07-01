@@ -273,7 +273,7 @@ $(function() {
 		            e.preventDefault();
 					//阻止事件传播
 		            e.stopPropagation();
-		            var productId=$(".productId").attr("data-id");
+		            var productId=$(this).attr("data-id");
 		            window.location.href="/product/productBind.page?id="+productId;
 		        });
 			   }  
