@@ -31,7 +31,7 @@
 							class="user-info"> <small>欢迎,</small> testuser
 						</span> <i class="ace-icon fa fa-caret-down"></i>
 					</a>
-						<ul
+						<!-- <ul
 							class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
 							<li><a href="#"> <i class="ace-icon fa fa-cog"></i> 设置
 							</a></li>
@@ -43,7 +43,7 @@
 							<li><a href="/logout.page"> <i
 									class="ace-icon fa fa-power-off"></i> 注销
 							</a></li>
-						</ul>
+						</ul> -->
 			</div>
 		</div>
 	</div>

@@ -28,7 +28,7 @@
 	
 	<!-- 级别为info以及以上级别的日志 -->
     <!-- TRACE < DEBUG < INFO < WARN < ERROR -->
-    <root level="INFO">
+    <root level="ERROR">
         <appender-ref ref="STDOUT" />
     </root>
 

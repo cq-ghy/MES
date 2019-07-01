@@ -6,14 +6,14 @@
 
     <settings>
     	<!-- 允许在嵌套语句中使用行分界（RowBounds）,简称换行 -->
-        <setting name="safeRowBoundsEnabled" value="true"/>
+       <!--  <setting name="safeRowBoundsEnabled" value="true"/> -->
         <!-- 不允许使用cache -->
         <setting name="cacheEnabled" value="false" />
         <!-- 插入主键的时候自动生成主键id -->
         <setting name="useGeneratedKeys" value="true" />
         <!-- 日志配置 -->
         <setting name="logImpl" value="STDOUT_LOGGING" />
-    </settings>
+     </settings>
 
     <!--<typeAliases>-->
         <!---->
